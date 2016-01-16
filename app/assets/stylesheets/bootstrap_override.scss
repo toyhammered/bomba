@@ -1,0 +1,102 @@
+// Colors
+$orange: #f37537;
+$almost-black: #232323;
+$dark-grey: #c8c8c8;
+$medium-grey: #dddddd;
+$light-grey: #f3f3f3;
+
+$success-green: #BFE28C;
+$error-red: #D47677;
+
+// Brand
+$brand-primary: $orange !default;
+$brand-white: #fff;
+$brand-black: #000;
+$brand-darker: #444;
+$brand-gray: #ccc;
+$brand-lighter: #e9e9e9;
+$brand-body-color: #818892;
+$brand-selection-color: $orange;
+$brand-overlay-color: #3b3d40;
+$brand-bg-color: $brand-white;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Globals
+$body-bg: $dark-grey;
+$grid-gutter-width: 40px !default;
+$border-radius-base:  4px !default;
+$padding-base-vertical: 14px !default;
+$brand-primary: $orange !default;
+$input-border-focus:  $brand-primary !default;
+$form-group-margin-bottom:       30px !default;
+
+// Panels
+$panel-bg: #eee;
+$panel-footer-bg: #eee;
+$panel-inner-border: none;
+$panel-default-border: none;
+$panel-body-padding: 10px;
+$panel-footer-padding: 10px;
+
+// Tables
+$table-bg: #eee;
+$table-bg-accent: #fff;
+$table-border-color: $orange;
+$table-cell-padding: 8px;
+
+// Fonts
+$font-family-sans-serif: arial, serif;
+$font-primary: arial, serif;
+
+$headings-font-weight: 700;
+
+// Forms
+$btn-primary-bg: $orange;
+$input-border: #fff;
+$input-border-focus: $orange;
+
+// Flash Messages
+$state-success-bg: $success-green;
+$state-danger-bg: $error-red;
+
+// Mixin
+@mixin transition($transition) {
+    -moz-transition:    $transition ease-in;
+    -o-transition:      $transition ease-in;
+    -webkit-transition: $transition ease-in;
+    -ms-transition:   $transition ease-in;
+    transition:         $transition ease-in;
+}
+@mixin inline-block() {
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+}
+@mixin flex() {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
+
+@mixin scale($scale) {
+	 @include transform(scale($scale));
+}
