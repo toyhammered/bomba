@@ -6,7 +6,7 @@ class Friendship < ActiveRecord::Base
 
 
   def accept_friendship
-    self.update_attributes(state: :active, friended_at: Time.now)
+    self.update_attributes(status: :active, friended_at: Time.now)
   end
 
   def deny_friendship
@@ -16,5 +16,5 @@ class Friendship < ActiveRecord::Base
   def cancel_friendship
     self.destroy
   end
-  
+
 end
