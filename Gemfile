@@ -26,6 +26,7 @@ group :development, :test do
 end
 
 gem 'faker'
+gem 'placeholdit'
 
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
