@@ -2,7 +2,9 @@
   <div class="panel">
     <div class="pannel-body">
       <%= placeholdit_image_tag "225", class: "img-rounded" %>
+        <%= profile_friendship_button(@user) %>
     </div>
+
     <div class="panel-footer" style="background: white;">
       <%= link_to "Timeline", "#", class: "btn btn-default" %>
       <%= link_to "About", "#", class: "btn btn-default" %>

@@ -15,19 +15,21 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id", dependent: :destroy
 
 
-
   def set_default_role
     self.role ||= :standard
   end
 
   def request_friendship(user_2)
+    return if self == user_2
     self.friendships.create(friend: user_2)
   end
 
+  # This is friend request that has been sent to you
   def pending_friend_requests_from
     self.inverse_friendships.pending
   end
 
+  # You have sent a friend request to someone else.
   def pending_friend_requests_to
     self.friendships.pending
   end
@@ -54,6 +56,10 @@ class User < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def friendship_relation(user_2)
+    Friendship.where(user_id: [self.id, user_2.id], friend_id: [self.id, user_2.id]).first
   end
 
 end
