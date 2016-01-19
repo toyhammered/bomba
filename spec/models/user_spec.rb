@@ -32,6 +32,8 @@ RSpec.describe User, type: :model do
       end
 
       it 'should not create 2 friendships between 2 users (visa-versa)' do
+        # user_id: 1, friend_id: 2
+        # user_id: 2, friend_id: 1
         my_user.request_friendship(other_user)
         other_user.request_friendship(my_user)
         expect(Friendship.count).to eql 1

@@ -61,7 +61,7 @@ create = CreateSeeds.new
 create.new_user(1, "toyhammered", "daniel@rassiner.com", :admin)
 create.new_user(1, "admin","admin@example.com", :admin)
 create.new_user(1, "standard", "standard@example.com", :standard)
-create.new_user(3, Faker::Internet.user_name, Faker::Internet.safe_email, :standard)
+create.new_user(7, Faker::Internet.user_name, Faker::Internet.safe_email, :standard)
 users = User.all
 
 # create.new_active_friendship(200, users)
