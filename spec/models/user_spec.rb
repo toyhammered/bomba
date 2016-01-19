@@ -31,6 +31,12 @@ RSpec.describe User, type: :model do
         expect{ my_user.request_friendship(my_user) }.to change(Friendship, :count).by(0)
       end
 
+      it 'should not create 2 friendships between 2 users (visa-versa)' do
+        my_user.request_friendship(other_user)
+        other_user.request_friendship(my_user)
+        expect(Friendship.count).to eql 1
+      end
+
       it 'should create default status of pending' do
         my_user.request_friendship(other_user)
         expect(Friendship.last.pending?).to eq true

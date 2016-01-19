@@ -3,7 +3,7 @@ FactoryGirl.define do
 
   factory :user do
     email { Faker::Internet.safe_email }
-    username { Faker::Internet.user_name }
+    sequence(:username) { |x| "toyhammered#{x}" }
     password pw
     password_confirmation pw
     confirmed_at Time.now
