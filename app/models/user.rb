@@ -8,8 +8,12 @@ class User < ActiveRecord::Base
          :confirmable, :recoverable, :rememberable,
          :trackable, :validatable
 
-  validates_presence_of :username
-  validates_uniqueness_of :username
+  USERNAME_REGEX = /\A[a-zA-Z0-9\-_]+\z/i
+  validates :username,
+    presence: true,
+    uniqueness: { case_sensitive: false },
+    length: { minimum: 3, maximum: 20 },
+    format: { with: USERNAME_REGEX }
 
   has_many :friendships, dependent: :destroy
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id", dependent: :destroy
