@@ -6,6 +6,7 @@
   </div>
   <div>
     <%# This will create the correct button for the user (refer to user profile of design document)%>
+    <p><%= current_user.friendship_status(user) %></p>
     <%= profile_friendship_button(user) %>
   </div>
 </div>

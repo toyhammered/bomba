@@ -62,5 +62,41 @@ RSpec.describe User, type: :model do
       end
     end
 
+    describe '#friendship_status' do
+      context 'it returns the correct status as string' do
+        it 'should return not_friends' do
+          status = my_user.friendship_status(other_user)
+
+          expect(status).to eq "not_friends"
+        end
+
+        it 'should return friends' do
+          my_user.request_friendship(other_user)
+          f = Friendship.last
+          f.accept_friendship
+          status = my_user.friendship_status(other_user)
+
+          expect(status).to eq "friends"
+        end
+
+        it 'should return pending' do
+          my_user.request_friendship(other_user)
+          status = my_user.friendship_status(other_user)
+
+          expect(status).to eq "pending"
+        end
+
+        it 'should return requested' do
+          other_user.request_friendship(my_user)
+          status = my_user.friendship_status(other_user)
+
+          expect(status).to eq "requested"
+        end
+      end
+    end
+
+    describe '#friendship_relation' do
+
+    end
   end
 end
