@@ -95,8 +95,5 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe '#friendship_relation' do
-
-    end
   end
 end

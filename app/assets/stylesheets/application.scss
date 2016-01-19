@@ -13,6 +13,7 @@
 
 // custom
 @import "devise_forms";
+@import "users";
 
 
 // Template Base
@@ -141,10 +142,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .panel-body, .panel-footer {
   border-radius: 4px;
-}
-
-.panel-body {
-  background-color: #fff;
 }
 
 .panel-footer {

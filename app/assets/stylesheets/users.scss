@@ -1,3 +1,40 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#user-profile-header {
+  .panel {
+    .panel-group {
+      padding-left: 30px;
+      margin-bottom:-28px;
+      .panel-body {
+        padding-top: 40px;
+        img {
+          //margin-bottom: -40px;
+        }
+        a {
+
+          bottom:0;
+          margin-left:20px;
+        }
+      }
+      .panel-footer {
+        margin-bottom:0;
+        padding-top:0;
+        a {
+          width: 225px;
+          padding-top:2px;
+          padding-bottom:2px;
+        }
+      }
+    }
+
+
+    .panel-footer.links {
+      margin-bottom:0;
+      padding-left:290px;
+      padding-bottom: 0;
+    }
+
+  }
+}
