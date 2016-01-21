@@ -4,6 +4,7 @@ class FriendshipsController < ApplicationController
   def create
     @friend = User.find(params[:user_id])
     @freindship = current_user.request_friendship(@friend)
+    # raise
     respond_to do |format|
       format.html {redirect_to users_path, notice: "Friendship Created"}
     end

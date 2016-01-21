@@ -31,7 +31,7 @@ RSpec.describe User, type: :model do
         expect{ my_user.request_friendship(my_user) }.to change(Friendship, :count).by(0)
       end
 
-      it 'should not create 2 friendships between 2 users (visa-versa)' do
+      it 'should not create 2 records of the same friendship' do
         # user_id: 1, friend_id: 2
         # user_id: 2, friend_id: 1
         my_user.request_friendship(other_user)

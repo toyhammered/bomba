@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def request_friendship(user_2)
-    return if self == user_2
+    # return if self == user_2
     self.friendships.create(friend: user_2)
   end
 

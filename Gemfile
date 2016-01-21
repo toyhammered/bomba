@@ -14,6 +14,7 @@ group :development do
   gem 'spring', '1.6.0'
   gem 'sqlite3'
   gem 'pry-rails'
+  gem 'rails_db'
 end
 
 group :development, :test do
