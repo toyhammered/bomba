@@ -23,7 +23,7 @@ class CreateSeeds
     end
   end
 
-  def new_active_friendship(amount,users)
+  def new_friendship_type(amount, type, users)
     i = 0
     loop do
       break if i > 1000
@@ -31,28 +31,17 @@ class CreateSeeds
 
       user = users.sample
       friend = users.sample
-      unless user == friend
-        f = Friendship.new(
+        f = type.new(
           user_id: user.id,
-          friend_id: friend.id,
-          status: 1,
-          friended_at: Time.now
+          friend_id: friend.id
         )
         if f.save
           amount -= 1
         end
-      end
       i += 1
     end
   end
 
-  def new_pending_friendship()
-
-  end
-
-  def new_requested_friendship()
-
-  end
 
 end
 
@@ -64,10 +53,11 @@ create.new_user(1, "standard", "standard@example.com", :standard)
 create.new_user(7, Faker::Internet.user_name, Faker::Internet.safe_email, :standard)
 users = User.all
 
-# create.new_active_friendship(200, users)
-
+create.new_friendship_type(50, PendingFriendship, users)
+create.new_friendship_type(50, Friendship, users)
 
 # Seeding Completed
 puts "Seeding Finished."
 puts "#{User.count} users created."
+puts "#{PendingFriendship.count} pending friendships created."
 puts "#{Friendship.count} friendships created."

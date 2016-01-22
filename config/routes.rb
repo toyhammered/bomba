@@ -5,11 +5,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index]
 
-  # I don't think I need to specify :accept inside the resources do I?
-  resources :friendships, only: [:create, :destroy] do
+  resources :pending_friendships, only: [:create, :destroy] do
     member do
-      put :accept
+      post 'accept'
     end
   end
+  resources :friendships, only: [:destroy]
 
 end

@@ -1,9 +1,9 @@
-class CreateFriendships < ActiveRecord::Migration
+class CreatePendingFriendships < ActiveRecord::Migration
   def change
-    create_table :friendships do |t|
+    create_table :pending_friendships do |t|
       t.integer :user_id
       t.integer :friend_id
-      
+
       t.timestamps null: false
     end
   end

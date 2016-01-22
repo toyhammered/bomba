@@ -14,8 +14,8 @@ RSpec.describe FriendshipsController, type: :controller do
 
         # This seems awkward because I am just testing the 'request_friendship' method, which is already testing in the user_spec.
         # how could I make the post :create work?
-        my_user.request_friendship(other_user)
-        expect(Friendship.count).to eq 1
+        # my_user.request_friendship(other_user)
+        # expect(Friendship.count).to eq 1
 
         # expect { post :create, user_id: my_user.id, friend_id: other_user.id }.to change(Friendship, :count).by(1)
       end
