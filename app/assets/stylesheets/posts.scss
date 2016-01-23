@@ -22,15 +22,18 @@
     }
   }
 }
-.panel-footer.panel-footer-inverse {
-  border-top-right-radius:0;
-  border-top-left-radius:0;
-  background: #fff;
-  text-align: right;
-  input {
-    padding-top:2px;
-    padding-bottom:2px;
-    padding-left:20px;
-    padding-right:20px;
+
+form {
+  .panel-footer.panel-footer-inverse {
+    border-top-right-radius:0;
+    border-top-left-radius:0;
+    background: #fff;
+    text-align: right;
+    input {
+      padding-top:2px;
+      padding-bottom:2px;
+      padding-left:20px;
+      padding-right:20px;
+    }
   }
 }

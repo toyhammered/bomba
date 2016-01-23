@@ -5,7 +5,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     @friendship.cancel_friendship
     respond_to do |format|
-      format.html { redirect_to users_path, notice: "Friendship Deleted" }
+      format.html { redirect_to :back, notice: "Friendship Deleted" }
     end
   end
 
