@@ -41,7 +41,12 @@ RSpec.describe PendingFriendship, type: :model do
       end
     end
 
-
   end # end of instances
+
+  context 'validations' do
+    describe '#inverse_pending_friendship_relationship_does_not_exist' do
+      pending "need to figure out how to make this work with new model structure"
+    end
+  end
 
 end

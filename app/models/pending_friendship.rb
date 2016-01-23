@@ -19,7 +19,7 @@ class PendingFriendship < ActiveRecord::Base
   end
 
   def inverse_pending_friendship_relationship_does_not_exist
-    if (PendingFriendship.find_by(user: self.friend, friend: self.user).present?
+    if PendingFriendship.find_by(user: self.friend, friend: self.user).present?
       # adding errors to the model
       errors.add(:user, "inverse pending friendship relationship already exists")
     end
