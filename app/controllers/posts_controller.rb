@@ -13,6 +13,36 @@ class PostsController < ApplicationController
     redirect_to user_path(current_user.username)
   end
 
+  def update
+    @post = Post.find(params[:id])
+    @post.assign_attributes(post_params)
+
+    authorize @post
+
+    if @post.save
+      flash[:notice] = "Post was updated"
+    else
+      flash[:error] = "There was an error updating the post. Please try again."
+    end
+
+    redirect_to user_path(current_user.username)
+
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    authorize @post
+
+    if @post.destroy
+      flash[:notice] = "Post was successfully deleted."
+    else
+      flash[:error] = "There was an error deleting the post"
+    end
+
+    redirect_to user_path(current_user.username)
+
+  end
+
   private
 
   def post_params
