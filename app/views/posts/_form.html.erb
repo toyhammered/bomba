@@ -1,0 +1,18 @@
+<%= form_for [@user, Post.new] do |f| %>
+  <div class="row">
+    <div class="col-md-offset-1">
+      <div class="panel panel-inverse">
+        <%= placeholdit_image_tag "100" %>
+        <div class="panel-body panel-body-inverse">
+          <%= f.text_area :body, rows: 4, class: 'form-control', placeholder: '' %>
+        </div>
+      </div>
+      <div class="panel-footer panel-footer-inverse">
+        <%= f.submit "Post", class: 'btn btn-primary' %>
+      </div>
+    </div>
+
+
+  </div>
+
+<% end %>

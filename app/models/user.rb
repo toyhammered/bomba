@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
 
   enum role: [:standard, :admin]
 
-  # after_initialize :set_default_role, :if => :new_record?
-
   devise :database_authenticatable, :registerable,
          :confirmable, :recoverable, :rememberable,
          :trackable, :validatable
@@ -16,10 +14,12 @@ class User < ActiveRecord::Base
     format: { with: USERNAME_REGEX }
 
   has_many :pending_friendships, dependent: :destroy
-  has_many :pending_friendships, dependent: :destroy
   has_many :inverse_pending_friendships, class_name: "PendingFriendship", foreign_key: "friend_id", dependent: :destroy
+
   has_many :friendships, dependent: :destroy
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id", dependent: :destroy
+
+  has_many :posts, dependent: :destroy
 
   def request_friendship(user_2)
     self.pending_friendships.create(friend: user_2)

@@ -1,0 +1,20 @@
+.friends {
+  margin-left: 20px;
+  .panel {
+    border: none;
+    .panel-heading {
+      border-bottom: 1px solid $dark-grey;
+      background-color: $medium-grey;
+      margin: 0;
+      padding:5px;
+    }
+
+    .panel-body {
+      background-color: #fff;
+
+      .row a img {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
