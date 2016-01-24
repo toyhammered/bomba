@@ -10,25 +10,40 @@
     position: absolute;
     margin-left: -125px;
   }
+  .panel-heading-inverse {
+    background-color: #fff;
+    margin: 0;
+    color: $medium-grey;
 
+    i:hover {
+      color: $dark-grey;
+    }
+  }
   .panel-body-inverse {
     border-bottom-right-radius:0;
     border-bottom-left-radius:0;
     background: #fff;
     padding: 15px;
-    textarea {
+    &.panel-body-post {
+      padding-top: 0;
+    }
+    textarea, .text-area {
       background: $light-grey;
       border: 1px solid $dark-grey;
+    }
+    .text-area {
+      padding: 5px;
     }
   }
 }
 
-form {
   .panel-footer.panel-footer-inverse {
     border-top-right-radius:0;
     border-top-left-radius:0;
     background: #fff;
-    text-align: right;
+    &.panel-footer-form {
+      text-align: right;
+    }
     input {
       padding-top:2px;
       padding-bottom:2px;
@@ -36,4 +51,3 @@ form {
       padding-right:20px;
     }
   }
-}

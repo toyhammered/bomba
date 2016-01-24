@@ -1,0 +1,18 @@
+.modal-header {
+    background: $medium-grey;
+    border-top-right-radius:6px;
+    border-top-left-radius:6px
+}
+
+.modal-body {
+    textarea {
+        border: 1px solid $dark-grey;
+    }
+    .form-group {
+      padding: 15px;
+      margin-top:5px;
+      input {
+          margin-right: -15px;
+      }
+    }
+}
