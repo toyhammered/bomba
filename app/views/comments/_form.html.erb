@@ -1,18 +1,14 @@
 <%= form_for [post, Comment.new] do |f| %>
   <div class="row">
-    <div class="col-md-offset-1">
-      <div class="panel panel-inverse">
-        <%= placeholdit_image_tag "25" %>
+      <div class="panel panel-inverse panel-comment-form">
         <div class="panel-body panel-body-inverse">
-          <div class="col-md-10">
-            <%= f.text_area :body, rows: 1, class: 'form-control', placeholder: '' %>
-          </div>
-          <div class="col-md-2">
-            <%= f.submit "OK", class: 'btn btn-primary pull-right' %>
+          <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1"><%= placeholdit_image_tag "40" %></span>
+            <%= f.text_area :body, rows: 1, class: 'form-control', placeholder: 'Your Comment' %>
+            <span class="input-group-addon"><%= f.submit "OK", class: 'btn btn-sm btn-primary pull-right' %></span>
           </div>
         </div>
       </div>
 
-    </div>
   </div>
 <% end %>

@@ -1,0 +1,49 @@
+.panel-group-comments {
+  margin-top: -30px;
+  .panel-heading {
+    padding-left:20px;
+    padding-right:20px;
+  }
+   .panel-comment-form, .panel-comment {
+    border: none;
+    .panel-body {
+      background: $medium-grey;
+    }
+  }
+
+  .panel-comment-form > .panel-body {
+    border-radius:0;
+  }
+
+  .panel-comment {
+    img {
+      float:left;
+      clear: both;
+      margin-right: 8px;
+    }
+    .panel-comment-text {
+
+    }
+  }
+
+  .panel-comment-form {
+    .input-group {
+      .input-group-addon {
+        padding:0;
+        border: none;
+        background-color: $medium-grey;
+        img {
+          margin-right: 8px;
+        }
+        input {
+          margin-left: 8px;
+        }
+      }
+      .form-control {
+        padding-top:9px;
+        padding-bottom:9px;
+      }
+
+    }
+  }
+}

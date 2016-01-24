@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-md-offset-1">
-    <div class="panel panel-inverse">
+    <div class="panel panel-inverse panel-post">
       <%= placeholdit_image_tag "100" %>
 
       <div class="panel-heading panel-heading-inverse">
-        <%= post.user.username %> posted this <%= time_ago_in_words(post.created_at) %> ago
+        <%= link_to post.user.username, user_path(post.user.username) %> <%= link_to "posted this #{time_ago_in_words(post.created_at)} ago", post_path(post) %>
         <div class="dropdown pull-right">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-2x fa-cog"></i></a>
           <ul class="dropdown-menu">
             <li><%= link_to "Edit Post", "#", "data-target": "#myModal_#{post.id}", "data-toggle": "modal" %></li>
-            <li><%= link_to "Delete Post", user_post_path(post.user, post), method: :delete, class: 'navbar-link', data: {confirm: "Are you sure?"} %></li>
+            <li><%= link_to "Delete Post", post_path(post), method: :delete, class: 'navbar-link', data: {confirm: "Are you sure?"} %></li>
           </ul>
         </div>
       </div>
@@ -23,23 +23,27 @@
         <%= link_to "<i class='fa fa-2x fa-heart'></i>".html_safe, "#" %>
         <%= link_to "<i class='fa fa-2x fa-bomb'></i>".html_safe, "#" %>
       </div>
+
+
+
       <div class="panel-group panel-group-comments">
         <div class="panel-heading panel-heading-inverse">
           <%= render partial: 'comments/form', locals: {post: post} %>
+          <%= render partial: 'comments/comment', collection: post.comments %>
+
         </div>
-        <div class="panel-body panel-body-inverse">
-          actual comments (only newest comment will go here)
-        </div>
+
         <div class="panel-footer panel-footer-inverse">
           "read more" link here
         </div>
       </div>
 
-  </div>
 
+
+  </div>
 </div>
 
 
 <div class="modal fade" id='<%= "myModal_#{post.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <%= render partial: 'posts/edit', locals: {post: post}%>
+  <%= render partial: 'posts/edit_modal', locals: {post: post}%>
 </div>

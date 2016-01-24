@@ -1,6 +1,6 @@
 class PostPolicy < ApplicationPolicy
 
-  def create?
+  def owner?
     user.owns?(record)
   end
 
