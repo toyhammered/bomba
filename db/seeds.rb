@@ -42,6 +42,16 @@ class CreateSeeds
     end
   end
 
+  def new_post(amount, users)
+    amount.times do
+      user = users.sample
+      Post.create!(
+        user_id: user.id,
+        body: Faker::Hipster.paragraph
+      )
+    end
+  end
+
 
 end
 
@@ -56,8 +66,13 @@ users = User.all
 create.new_friendship_type(50, PendingFriendship, users)
 create.new_friendship_type(50, Friendship, users)
 
+create.new_post(50, users)
+posts = Post.all
+
 # Seeding Completed
 puts "Seeding Finished."
 puts "#{User.count} users created."
 puts "#{PendingFriendship.count} pending friendships created."
 puts "#{Friendship.count} friendships created."
+puts "#{Post.count} posts created."
+puts "#{Comment.count} comments created."

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :users, only: [:show, :index] do
-    resources :posts, only: [:create, :destroy, :update]
+    resources :posts, only: [:create, :destroy, :update, :show]
   end
 
   resources :pending_friendships, only: [:create, :destroy] do
@@ -13,5 +13,9 @@ Rails.application.routes.draw do
     end
   end
   resources :friendships, only: [:destroy]
+
+  resources :posts, only: [] do
+    resources :comments, only: [:create, :destroy]
+  end
 
 end

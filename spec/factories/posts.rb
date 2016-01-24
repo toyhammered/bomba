@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :post do
-    user nil
-body "MyText"
+    user
+    body Faker::Hipster.paragraph
   end
 
 end

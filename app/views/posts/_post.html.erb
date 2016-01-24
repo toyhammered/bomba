@@ -2,6 +2,7 @@
   <div class="col-md-offset-1">
     <div class="panel panel-inverse">
       <%= placeholdit_image_tag "100" %>
+
       <div class="panel-heading panel-heading-inverse">
         <%= post.user.username %> posted this <%= time_ago_in_words(post.created_at) %> ago
         <div class="dropdown pull-right">
@@ -18,14 +19,27 @@
         </div>
       </div>
     </div>
-    <div class="panel-footer panel-footer-inverse panel-footer-post">
-      <%= link_to "<i class='fa fa-2x fa-heart'></i>".html_safe, "#" %>
-      <%= link_to "<i class='fa fa-2x fa-bomb'></i>".html_safe, "#" %>
-    </div>
+      <div class="panel-footer panel-footer-inverse panel-footer-post">
+        <%= link_to "<i class='fa fa-2x fa-heart'></i>".html_safe, "#" %>
+        <%= link_to "<i class='fa fa-2x fa-bomb'></i>".html_safe, "#" %>
+      </div>
+      <div class="panel-group panel-group-comments">
+        <div class="panel-heading panel-heading-inverse">
+          <%= render partial: 'comments/form', locals: {post: post} %>
+        </div>
+        <div class="panel-body panel-body-inverse">
+          actual comments (only newest comment will go here)
+        </div>
+        <div class="panel-footer panel-footer-inverse">
+          "read more" link here
+        </div>
+      </div>
+
   </div>
 
-
 </div>
+
+
 <div class="modal fade" id='<%= "myModal_#{post.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <%= render partial: 'posts/edit', locals: {post: post}%>
 </div>

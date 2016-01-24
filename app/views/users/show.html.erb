@@ -4,7 +4,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-offset-1 col-md-7">
-        <%= render partial: 'posts/form' %>
+        <% if policy(@posts.first).create? %>
+          <%= render partial: 'posts/form' %>
+        <% end %>
         <%= render partial: 'posts/post', collection: @posts %>
 
       </div>

@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
 
+  def owns?(post)
+    self.id == post.user_id
+  end
+
   def request_friendship(user_2)
     self.pending_friendships.create(friend: user_2)
   end

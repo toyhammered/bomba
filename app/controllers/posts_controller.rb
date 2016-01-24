@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def create
     @post = Post.new(post_params)
     @post.user = current_user
@@ -10,7 +14,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = "Error creating Post. Please try again."
     end
-    redirect_to user_path(current_user.username)
+    redirect_to :back
   end
 
   def update
@@ -25,7 +29,7 @@ class PostsController < ApplicationController
       flash[:error] = "There was an error updating the post. Please try again."
     end
 
-    redirect_to user_path(current_user.username)
+    redirect_to :back
 
   end
 
@@ -39,7 +43,7 @@ class PostsController < ApplicationController
       flash[:error] = "There was an error deleting the post"
     end
 
-    redirect_to user_path(current_user.username)
+    redirect_to :back
 
   end
 
