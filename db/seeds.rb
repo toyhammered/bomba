@@ -52,6 +52,18 @@ class CreateSeeds
     end
   end
 
+  def new_comment(amount, users, posts)
+    amount.times do
+      user = users.sample
+      post = posts.sample
+      Comment.create!(
+        user_id: user.id,
+        post_id: post.id,
+        body: Faker::Hipster.paragraph
+      )
+    end
+  end
+
 
 end
 
@@ -63,11 +75,14 @@ create.new_user(1, "standard", "standard@example.com", :standard)
 create.new_user(7, Faker::Internet.user_name, Faker::Internet.safe_email, :standard)
 users = User.all
 
-create.new_friendship_type(50, PendingFriendship, users)
-create.new_friendship_type(50, Friendship, users)
+create.new_friendship_type(25, PendingFriendship, users)
+create.new_friendship_type(25, Friendship, users)
 
 create.new_post(50, users)
 posts = Post.all
+
+create.new_comment(100, users, posts)
+comments = Comment.all
 
 # Seeding Completed
 puts "Seeding Finished."
