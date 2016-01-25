@@ -13,8 +13,8 @@ module UsersHelper
       link_to "Cancel Request", pending_friendship_path(status[1]), class: "btn btn-primary", method: :delete
     when "requested"
       content_tag(:div) do
-        (link_to "Accept", accept_pending_friendship_path(status[1]), class: "", method: :post) +
-        (link_to "Delete", pending_friendship_path(status[1]), class: "", method: :delete).html_safe
+        (link_to "<i class='fa fa-2x fa-check'></i>".html_safe, accept_pending_friendship_path(status[1]), class: "", method: :post) +
+        (link_to "<i class='fa fa-2x fa-times'></i>".html_safe, pending_friendship_path(status[1]), class: "", method: :delete).html_safe
       end
     when "not_friends"
       link_to "Add Friend", pending_friendships_path(user_id: user), class: "btn btn-primary", method: :post
