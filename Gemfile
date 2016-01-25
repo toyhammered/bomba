@@ -32,6 +32,7 @@ gem 'placeholdit'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'will_paginate', '~> 3.0.6'
+gem 'acts_as_votable', '~> 0.10.0'
 
 gem 'devise'
 gem 'figaro'

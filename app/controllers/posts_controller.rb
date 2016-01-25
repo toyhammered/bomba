@@ -47,6 +47,18 @@ class PostsController < ApplicationController
 
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.liked_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.disliked_by current_user
+    redirect_to :back
+  end
+
   private
 
   def post_params

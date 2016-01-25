@@ -20,9 +20,19 @@
       </div>
     </div>
       <div class="panel-footer panel-footer-inverse panel-footer-post">
-        <%= link_to "<i class='fa fa-2x fa-heart'></i>".html_safe, "#" %>
-        <%= link_to "<i class='fa fa-2x fa-bomb'></i>".html_safe, "#" %>
+        <%= link_to "<i class='fa fa-2x fa-heart'></i>".html_safe, like_post_path(post), method: :put %>
+        <%= link_to "<i class='fa fa-2x fa-bomb'></i>".html_safe, dislike_post_path(post), method: :put %>
       </div>
+      <div class="panel-footer panel-footer-inverse panel-footer-votes">
+        <% if post.get_likes.size != 0 %>
+          <p>Your post has been Liked by <%= post.get_likes.size %> people</p>
+        <% end %>
+
+        <% if post.get_dislikes.size != 0 %>
+          <p>Your post has been Bombed by <%= post.get_dislikes.size %> people</p>
+        <% end %>
+      </div>
+
 
 
 
@@ -30,8 +40,8 @@
         <div class="panel-heading panel-heading-inverse">
           <%= render partial: 'comments/form', locals: {post: post} %>
           <%= render partial: 'comments/comment', collection: post.comments %>
-
         </div>
+
 
         <div class="panel-footer panel-footer-inverse">
           "read more" link here

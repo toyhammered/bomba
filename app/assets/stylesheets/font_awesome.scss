@@ -1,0 +1,15 @@
+.fa-heart, .fa-bomb {
+  color: darken($dark-grey, 35%);
+
+  &:hover {
+    color: $orange;
+  }
+}
+
+.fa-cog.fa-2x {
+  color: $medium-grey;
+
+  &:hover {
+    color: $orange;
+  }
+}

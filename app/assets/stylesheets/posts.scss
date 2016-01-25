@@ -44,8 +44,12 @@
 .panel-footer.panel-footer-inverse {
   border-radius:0;
   background: #fff;
+  margin-bottom: 0;
   &.panel-footer-form {
     text-align: right;
+  }
+  &.panel-footer-votes {
+    background: $light-grey;
   }
   input {
     padding-top:2px;

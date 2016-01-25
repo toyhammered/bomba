@@ -5,7 +5,12 @@
         <% username = User.find(comment.user_id).username %>
         <div class="panel-comment-text">
             <%= link_to username, user_path(username) %> <%= comment.body %>
-            <small><br><%= time_ago_in_words(comment.created_at) %> ago</small>
+            <br>
+            <small>
+                <%=link_to "<i class='fa fa-heart'></i>".html_safe, like_comment_path(comment), method: :put %>
+                <%=link_to "<i class='fa fa-bomb'></i>".html_safe, dislike_comment_path(comment), method: :put %>                
+                <%= time_ago_in_words(comment.created_at) %> ago
+            </small>
         </div>
       </div>
     </div>

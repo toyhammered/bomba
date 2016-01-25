@@ -18,6 +18,19 @@ class CommentsController < ApplicationController
   def destroy
   end
 
+  def upvote
+    @comment = Comment.find(params[:id])
+    @comment.liked_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @comment = Comment.find(params[:id])
+    @comment.disliked_by current_user
+    redirect_to :back
+  end
+
+
   private
 
   def comment_params
