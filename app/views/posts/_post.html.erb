@@ -21,6 +21,7 @@
     </div>
       <div class="panel-footer panel-footer-inverse panel-footer-post">
         <%= link_to "<i class='fa fa-2x fa-heart'></i>".html_safe, like_post_path(post), method: :put %>
+        <%= post.get_likes.size - post.get_dislikes.size %>
         <%= link_to "<i class='fa fa-2x fa-bomb'></i>".html_safe, dislike_post_path(post), method: :put %>
       </div>
       <div class="panel-footer panel-footer-inverse panel-footer-votes">

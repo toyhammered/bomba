@@ -64,6 +64,28 @@ class CreateSeeds
     end
   end
 
+  def new_vote(amount, votes_on, votable_type, voters)
+    i = 0
+    loop do
+      break if i > 1000
+      break if amount <= 0
+
+      user = voters.sample
+      post_or_comment = votes_on.sample
+
+        v = user.votes.new(
+          votable: post_or_comment,
+          votable_type: votable_type,
+          vote_flag: [true,false].sample,
+          vote_weight: 1
+        )
+        if v.save
+          amount -= 1
+        end
+      i += 1
+    end
+  end
+
 
 end
 
@@ -84,6 +106,9 @@ posts = Post.all
 create.new_comment(100, users, posts)
 comments = Comment.all
 
+create.new_vote(100, posts, "Post", users)
+create.new_vote(100, comments, "Comment", users)
+
 # Seeding Completed
 puts "Seeding Finished."
 puts "#{User.count} users created."
@@ -91,3 +116,4 @@ puts "#{PendingFriendship.count} pending friendships created."
 puts "#{Friendship.count} friendships created."
 puts "#{Post.count} posts created."
 puts "#{Comment.count} comments created."
+puts "#{ActsAsVotable::Vote.count} votes created."
