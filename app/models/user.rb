@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     format: { with: USERNAME_REGEX }
 
   # check why this doesn't work
-  validates :avatar, presence: true
+  # validates :avatar, presence: true
 
   has_many :pending_friendships, dependent: :destroy
   has_many :inverse_pending_friendships, class_name: "PendingFriendship", foreign_key: "friend_id", dependent: :destroy
