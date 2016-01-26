@@ -10,6 +10,28 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:id])
     @posts = Post.where(user_id: @user)
     @friends = @user.active_friends
-
   end
+
+  def update
+    @user = User.find(params[:id])
+    @user.assign_attributes(user_params)
+
+    authorize @user
+    
+    if @user.save
+      flash[:notice] = "Profile Picture Updated"
+    else
+      flash[:error] = "There was an error updating your picture. Please try again."
+    end
+
+    redirect_to user_path(@user.username)
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:avatar)
+  end
+
+
 end

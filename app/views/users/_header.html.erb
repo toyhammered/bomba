@@ -2,7 +2,10 @@
   <div class="panel">
     <div class="panel-group">
       <div class="panel-body">
-        <%= placeholdit_image_tag "225", class: "img-rounded" %>
+        <% if policy(@user).update? %>
+          <%= render partial: 'avatar_upload' %>
+        <% end %>
+        <%= image_tag(@user.avatar.profile_avatar) %>
       </div>
       <div class="panel-footer">
         <%= profile_friendship_button(@user) %>

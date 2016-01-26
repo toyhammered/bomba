@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   acts_as_voter
-  
+
   enum role: [:standard, :admin]
 
   devise :database_authenticatable, :registerable,
@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
     length: { minimum: 3, maximum: 20 },
     format: { with: USERNAME_REGEX }
 
+  # check why this doesn't work
+  validates :avatar, presence: true
+
   has_many :pending_friendships, dependent: :destroy
   has_many :inverse_pending_friendships, class_name: "PendingFriendship", foreign_key: "friend_id", dependent: :destroy
 
@@ -23,8 +26,15 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  # Avatar uploader using carrierwave
+  mount_uploader :avatar, AvatarUploader
+
   def owns?(post)
     self.id == post.user_id
+  end
+
+  def default_avatar
+    self.avatar ||= "link_to_aws_s3_bucket_default_profile_picture"
   end
 
   def request_friendship(user_2)
