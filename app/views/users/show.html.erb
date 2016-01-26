@@ -4,9 +4,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-offset-1 col-md-7">
-        <% if policy(@posts.first).owner? %>
+        <%# if policy(@posts.first).owner? %>
           <%= render partial: 'posts/form' %>
-        <% end %>
+        <%# end %>
         <%= render partial: 'posts/post', collection: @posts %>
 
       </div>
