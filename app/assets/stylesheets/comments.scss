@@ -18,11 +18,13 @@
   .panel-comment {
     img {
       float:left;
-      clear: both;
       margin-right: 8px;
     }
     .panel-comment-text {
-
+      overflow:hidden;
+      p {
+        margin-bottom: 0;
+      }
     }
   }
 

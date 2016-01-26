@@ -4,8 +4,9 @@
         <%= placeholdit_image_tag "40" %>
         <% username = User.find(comment.user_id).username %>
         <div class="panel-comment-text">
-            <%= link_to username, user_path(username) %> <%= comment.body %>
-            <br>
+            <p>
+                <%= link_to username, user_path(username) %> <%= comment.body %>
+            </p>
             <small>
                 <%=link_to "<i class='fa fa-heart'></i>".html_safe, like_comment_path(comment), method: :put %>
                 <%=link_to "<i class='fa fa-bomb'></i>".html_safe, dislike_comment_path(comment), method: :put %>
