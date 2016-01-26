@@ -4,7 +4,7 @@
       <h3>Friend Requests From</h3>
     </div>
   </div>
-  <div class="row">
+  <div class="row requested-friends">
     <%= render partial: "user", collection: @requests_from %>
   </div>
 </div>
@@ -15,7 +15,7 @@
       <h3>Friends</h3>
     </div>
   </div>
-  <div class="row">
+  <div class="row active-friends">
     <%= render partial: "user", collection: @friends %>
   </div>
 </div>
