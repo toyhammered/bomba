@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(username: params[:id])
     @posts = Post.where(user_id: @user)
+    @post = @posts.first
     @friends = @user.active_friends
   end
 
