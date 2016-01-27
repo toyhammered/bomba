@@ -44,8 +44,8 @@
 
       <div class="panel-group panel-group-comments">
         <div class="panel-heading panel-heading-inverse">
-          <%= render partial: 'comments/form', locals: {post: post, user: user} %>
-          <%= render partial: 'comments/comment', collection: post.comments, locals: {user: user} %>
+          <%= render partial: 'comments/form', locals: {post: post, user: current_user} %>
+          <%= render partial: 'comments/comment', collection: post.comments %>
         </div>
 
 

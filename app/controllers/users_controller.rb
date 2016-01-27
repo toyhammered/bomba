@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user.assign_attributes(user_params)
 
     authorize @user
-    
+
     if @user.save
       flash[:notice] = "Profile Picture Updated"
     else
