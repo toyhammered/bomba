@@ -19,4 +19,5 @@
 # Ignore application configuration
 /config/application.yml
 
+# Ignore local images from carrierwave
 /public/uploads
