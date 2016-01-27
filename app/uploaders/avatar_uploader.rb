@@ -27,6 +27,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
+  def default_url
+    ActionController::Base.helpers.asset_path("default/" + [version_name, "default-profile-pic.jpg"].compact.join('_'))
+  end
+
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
@@ -46,7 +50,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   version :post_avatar do
     process :resize_to_fill => [100, 100]
   end
-  
+
   version :friendslist_avatar do
     process :resize_to_fill => [75, 75]
   end

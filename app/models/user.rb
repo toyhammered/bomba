@@ -29,8 +29,6 @@ class User < ActiveRecord::Base
   # Avatar uploader using carrierwave
   mount_uploader :avatar, AvatarUploader
 
-  before_save :default_avatar
-
   def owns?(post)
     self.id == post.user_id
   end
@@ -66,10 +64,5 @@ class User < ActiveRecord::Base
     return pending_friendship.user == self ?  ["pending", pending_friendship] :  ["requested", pending_friendship]
   end
 
-  private
-
-  def default_avatar
-    self.avatar ||= "uploads/default/default-profile-pic.jpg"
-  end
 
 end
