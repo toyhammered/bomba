@@ -31,21 +31,21 @@ class User < ActiveRecord::Base
   after_commit :remove_previously_stored_avatar, on: :update
 
   def owns?(post)
-    self.id == post.user_id
+    id == post.user_id
   end
 
   def request_friendship(user_2)
-    self.pending_friendships.create(friend: user_2)
+    pending_friendships.create(friend: user_2)
   end
 
   # This is friend request that has been sent to you
   def pending_friend_requests_from
-    self.inverse_pending_friendships
+    inverse_pending_friendships
   end
 
   # You have sent a friend request to someone else.
   def pending_friend_requests_to
-    self.pending_friendships
+    pending_friendships
   end
 
   def active_friends

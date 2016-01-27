@@ -12,18 +12,23 @@ RSpec.describe Friendship, type: :model do
   let(:other_user) { create(:user)}
 
   context 'instances' do
-    before(:each) do
-      my_user.request_friendship(other_user)
-    end
+    # before(:all) do
+    #   me_user = create(:user)
+    #   friend = create(:user)
+    #   me_user.request_friendship(friend)
+    # end
 
     describe '#cancel_friendship' do
       it 'should cancel the friendship' do
-        pfr = PendingFriendship.last
+        this_user = create(:user)
+        friend = create(:user)
+        pfr = this_user.request_friendship(friend)
+
         pfr.accept_friendship
 
         fr = Friendship.last
         fr.cancel_friendship
-        
+
         expect(Friendship.find_by(user_id: my_user, friend_id: other_user)).to be_nil
       end
     end

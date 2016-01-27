@@ -1,35 +1,52 @@
 require 'rails_helper'
 
 RSpec.describe PendingFriendship, type: :model do
+  let!(:my_user) { create(:user) }
+  let!(:other_user) { create(:user)}
 
-  it { should validate_presence_of(:user_id) }
-  it { should validate_presence_of(:friend_id) }
+  # it { should validate_presence_of(:user_id) }
+  # it { should validate_presence_of(:friend_id) }
 
   it { should belong_to(:user) }
   it { should belong_to(:friend) }
 
-  let(:my_user) { create(:user) }
-  let(:other_user) { create(:user)}
 
   context 'instances' do
-    before(:each) do
-      my_user.request_friendship(other_user)
-    end
+    # before(:each) do
+    #   my_user.request_friendship(other_user)
+    # end
 
     describe '#accept_friendship' do
 
       it 'should create new friendship' do
-          pfr = PendingFriendship.last
-          pfr.accept_friendship
-          fr = Friendship.last
+          this_user = create(:user)
+          friend = create(:user)
+
+          # puts "*" * 10
+          # puts this_user.username
+          # puts friend.username
+          # puts "*" * 10
+          pfr = this_user.request_friendship(friend)
+          p PendingFriendship.all
+          p Friendship.all
+
+          expect(PendingFriendship.where(id: pfr.id).take).to_not be_nil
+
+          fr = pfr.accept_friendship
           expect(fr).to_not be_nil
       end
 
       it 'should destroy pending friendship' do
-        pfr = PendingFriendship.last
+        this_user = create(:user)
+        friend = create(:user)
+        puts "*" * 10
+        puts this_user.username
+        puts friend.username
+        puts "*" * 10
+        pfr = this_user.request_friendship(friend)
+        expect(PendingFriendship.where(id: pfr.id).take).to_not be_nil
         pfr.accept_friendship
-        pfr = PendingFriendship.last
-        expect(pfr).to be_nil
+        expect(PendingFriendship.where(id: pfr.id).take).to be_nil
       end
     end
 

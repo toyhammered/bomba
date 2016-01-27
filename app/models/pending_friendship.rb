@@ -7,21 +7,28 @@ class PendingFriendship < ActiveRecord::Base
 
   validates :user_id, exclusion: { in: ->(pending_friendship) { [pending_friendship.friend_id] } }
   validates_uniqueness_of :user, scope: :friend
-  validate :inverse_pending_friendship_relationship_does_not_exist
+  validate :friendship_relationship_does_not_exist
 
   def accept_friendship
-    self.user.friendships.create(friend: self.friend)
-    self.destroy
+    user.friendships.create(friend: friend)
+    destroy
   end
 
   def deny_friendship
-    self.destroy
+    destroy
   end
 
-  def inverse_pending_friendship_relationship_does_not_exist
-    if PendingFriendship.find_by(user: self.friend, friend: self.user).present?
-      # adding errors to the model
-      errors.add(:user, "inverse pending friendship relationship already exists")
+  def friendship_relationship_does_not_exist
+    if already_friends?
+      errors.add(:user, "You are already friends with this user")
     end
+  end
+
+  def already_pending?
+    PendingFriendship.find_by(user: friend, friend: user).present?
+  end
+
+  def already_friends?
+    user.friendships.build(user_id: user.id, friend_id: friend.id).save
   end
 end
