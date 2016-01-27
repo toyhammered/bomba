@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
 
   # Avatar uploader using carrierwave
   mount_uploader :avatar, AvatarUploader
+  after_commit :remove_previously_stored_avatar, on: :update
 
   def owns?(post)
     self.id == post.user_id
