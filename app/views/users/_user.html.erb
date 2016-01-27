@@ -2,6 +2,7 @@
   <div class="thumbnail">
     <%= link_to user_path(user.username) do %>
       <%= placeholdit_image_tag "700" %>
+      <%#= image_tag(@user.avatar.large_avatar) %>
       <div class="caption">
         <p class="text-center"><%= user.username %></p>
       </div>

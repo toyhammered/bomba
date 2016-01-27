@@ -1,11 +1,11 @@
 <div class="row">
     <div class="panel panel-inverse panel-comment">
       <div class="panel-body panel-body-inverse">
-        <%= placeholdit_image_tag "40" %>
-        <% username = User.find(comment.user_id).username %>
+        <%= image_tag(user.avatar.comment_avatar) %>
+
         <div class="panel-comment-text">
             <p>
-                <%= link_to username, user_path(username) %> <%= comment.body %>
+                <%= link_to user.username, user_path(user.username) %> <%= comment.body %>
             </p>
             <small>
                 <%=link_to "<i class='fa fa-heart'></i>".html_safe, like_comment_path(comment), method: :put %>

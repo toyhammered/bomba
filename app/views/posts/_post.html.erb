@@ -5,10 +5,11 @@
 <div class="row">
   <div class="col-md-offset-1">
     <div class="panel panel-inverse panel-post">
-      <%= placeholdit_image_tag "100" %>
+      <%= image_tag(user.avatar.post_avatar) %>
+
 
       <div class="panel-heading panel-heading-inverse">
-        <%= link_to post.user.username, user_path(post.user.username) %> <%= link_to "posted this #{time_ago_in_words(post.created_at)} ago", post_path(post) %>
+        <%= link_to user.username, user_path(user.username) %> <%= link_to "posted this #{time_ago_in_words(post.created_at)} ago", post_path(post) %>
         <div class="dropdown pull-right">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-2x fa-cog"></i></a>
           <ul class="dropdown-menu">
@@ -43,8 +44,8 @@
 
       <div class="panel-group panel-group-comments">
         <div class="panel-heading panel-heading-inverse">
-          <%= render partial: 'comments/form', locals: {post: post} %>
-          <%= render partial: 'comments/comment', collection: post.comments %>
+          <%= render partial: 'comments/form', locals: {post: post, user: user} %>
+          <%= render partial: 'comments/comment', collection: post.comments, locals: {user: user} %>
         </div>
 
 

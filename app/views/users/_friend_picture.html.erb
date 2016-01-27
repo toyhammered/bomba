@@ -1,7 +1,7 @@
 <div class="col-md-4">
   <div class="row text-center">
     <%= link_to user_path(user.username) do %>
-      <%= placeholdit_image_tag "75" %>
+      <%= image_tag(user.avatar.friendslist_avatar) %>
     <% end %>
   </div>
 </div>

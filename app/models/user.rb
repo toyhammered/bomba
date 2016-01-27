@@ -29,12 +29,10 @@ class User < ActiveRecord::Base
   # Avatar uploader using carrierwave
   mount_uploader :avatar, AvatarUploader
 
+  before_save :default_avatar
+
   def owns?(post)
     self.id == post.user_id
-  end
-
-  def default_avatar
-    self.avatar ||= "link_to_aws_s3_bucket_default_profile_picture"
   end
 
   def request_friendship(user_2)
@@ -66,6 +64,12 @@ class User < ActiveRecord::Base
     return ["not_friends"] if friendship.nil? && pending_friendship.nil?
     return ["friends", friendship] if friendship.present?
     return pending_friendship.user == self ?  ["pending", pending_friendship] :  ["requested", pending_friendship]
+  end
+
+  private
+
+  def default_avatar
+    self.avatar ||= "uploads/default/default-profile-pic.jpg"
   end
 
 end
