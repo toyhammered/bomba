@@ -30,6 +30,9 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   after_commit :remove_previously_stored_avatar, on: :update
 
+  # scope :active_friends, -> { joins(:friendships).where.active('friendships.user_id = ? OR friendships.friend_id = ?', self.id, self.id) }
+  # scope :pending_friends, -> { joins(:pending_friendships).where.active('friendships.user_id = ? OR friendships.friend_id = ?', self.id, self.id) }
+
   def owns?(post)
     id == post.user_id
   end
@@ -38,31 +41,25 @@ class User < ActiveRecord::Base
     pending_friendships.create(friend: user_2)
   end
 
-  # This is friend request that has been sent to you
   def pending_friend_requests_from
     inverse_pending_friendships
   end
 
-  # You have sent a friend request to someone else.
   def pending_friend_requests_to
     pending_friendships
   end
 
   def active_friends
-    # we want all of the friendships that we are a friend to them
-    # this gets us both user_id and friend_id (which makes up a friendship)
-    #self.friendships.active.map(&:friend) + self.inverse_friendships.active.map(&:user)
-    self.friendships.map(&:friend) + self.inverse_friendships.map(&:user)
+    User.joins(:friendships).where('friendships.user_id = ? OR friendships.friend_id = ?', self.id, self.id)
   end
 
   def friendship_status(user_2)
-    # not sure if I am going to need this still
-    friendship = Friendship.find_by(user_id: [self.id, user_2.id], friend_id: [self.id, user_2.id])
-    pending_friendship = PendingFriendship.find_by(user_id: [self.id, user_2.id], friend_id: [self.id, user_2.id])
+    friendships = Friendship.active_for(self)
+    pending_friendships = PendingFriendship.pending_for(self)
 
-    return ["not_friends"] if friendship.nil? && pending_friendship.nil?
-    return ["friends", friendship] if friendship.present?
-    return pending_friendship.user == self ?  ["pending", pending_friendship] :  ["requested", pending_friendship]
+    return ["not_friends"] if friendships.empty? && pending_friendships.empty?
+    return ["friends", friendships] if friendships.present?
+    return pending_friendships.take && pending_friendships.take.user == self ?  ["pending", pending_friendships] :  ["requested", pending_friendships]
   end
 
 

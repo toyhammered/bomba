@@ -9,6 +9,9 @@ class Friendship < ActiveRecord::Base
   validates_uniqueness_of :user, scope: :friend
   validate :inverse_friendship_relationship_does_not_exist
 
+  scope :active_for, ->(user) {where('friendships.user_id = ? OR friendships.friend_id = ?', user.id, user.id)}
+
+
   def cancel_friendship
     self.destroy
   end
