@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PendingFriendship, type: :model do
-  let!(:my_user) { create(:user) }
-  let!(:other_user) { create(:user)}
-
   # it { should validate_presence_of(:user_id) }
   # it { should validate_presence_of(:friend_id) }
 
@@ -12,38 +9,35 @@ RSpec.describe PendingFriendship, type: :model do
 
 
   context 'instances' do
-    # before(:each) do
-    #   my_user.request_friendship(other_user)
-    # end
-
     describe '#accept_friendship' do
-
+      before(:each) do
+        my_user = create(:user)
+        other_user = create(:user)
+        my_user.request_friendship(other_user)
+      end
       it 'should create new friendship' do
-          this_user = create(:user)
-          friend = create(:user)
 
-          # puts "*" * 10
-          # puts this_user.username
-          # puts friend.username
-          # puts "*" * 10
-          pfr = this_user.request_friendship(friend)
+          print "Pending: "
           p PendingFriendship.all
+          print "Friendship: "
           p Friendship.all
+
+          pfr = PendingFriendship.last
 
           expect(PendingFriendship.where(id: pfr.id).take).to_not be_nil
 
-          fr = pfr.accept_friendship
+          pfr.accept_friendship
+          fr = Friendship.last
+          puts "After"
+          print "Pending: "
+          p PendingFriendship.all
+          print "Friendship: "
+          p fr
           expect(fr).to_not be_nil
       end
 
       it 'should destroy pending friendship' do
-        this_user = create(:user)
-        friend = create(:user)
-        puts "*" * 10
-        puts this_user.username
-        puts friend.username
-        puts "*" * 10
-        pfr = this_user.request_friendship(friend)
+        pfr = PendingFriendship.last
         expect(PendingFriendship.where(id: pfr.id).take).to_not be_nil
         pfr.accept_friendship
         expect(PendingFriendship.where(id: pfr.id).take).to be_nil
@@ -52,9 +46,13 @@ RSpec.describe PendingFriendship, type: :model do
 
     describe '#deny_friendship' do
       it 'should deny the friendship' do
+        my_user = create(:user)
+        other_user = create(:user)
+        my_user.request_friendship(other_user)
+
         pfr = PendingFriendship.last
         pfr.deny_friendship
-        expect(PendingFriendship.find_by(user_id: my_user, friend_id: other_user)).to be_nil
+        expect(PendingFriendship.last).to be_nil
       end
     end
 

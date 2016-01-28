@@ -21,6 +21,8 @@ class PendingFriendship < ActiveRecord::Base
   def friendship_relationship_does_not_exist
     if already_friends?
       errors.add(:user, "You are already friends with this user")
+    elsif already_pending?
+      errors.add(:user, "Whatever you just did... dont do it")
     end
   end
 
@@ -29,6 +31,9 @@ class PendingFriendship < ActiveRecord::Base
   end
 
   def already_friends?
-    user.friendships.build(user_id: user.id, friend_id: friend.id).save
+    # Friendship.find_by(user: user, friend: friend).present? ||
+    # Friendship.find_by(user: friend, friend: user).present?
+    # THIS IS THE ERROR
+    !user.friendships.build(user_id: user.id, friend_id: friend.id).valid?
   end
 end
