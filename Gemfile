@@ -25,6 +25,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
 end
 gem 'pg'
+gem 'active_record_union'
 
 gem 'faker'
 gem 'placeholdit'

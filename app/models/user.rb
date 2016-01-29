@@ -42,7 +42,9 @@ class User < ActiveRecord::Base
   end
 
   def active_friends
-    User.joins('INNER JOIN friendships ON friendships.friend_id = users.id').where('friendships.user_id = ?', self.id) +
-    User.joins(:friendships).where('friendships.friend_id = ?', self.id)
+    User.joins('INNER JOIN friendships ON friendships.friend_id = users.id').
+         where('friendships.user_id = ?', self.id).
+         union(User.joins(:friendships).
+                    where('friendships.friend_id = ?', self.id))
   end
 end
