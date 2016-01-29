@@ -6,10 +6,17 @@ class UsersController < ApplicationController
     @friends = current_user.active_friends
   end
 
+  # Timeline
   def show
     @user = User.find_by(username: params[:id])
     @posts = Post.where(user_id: @user)
-    @post = @posts.first
+    @friends = @user.active_friends
+  end
+
+  # About
+  def about
+    @user = User.find_by(username: params[:id])
+    @posts = Post.where(user_id: @user)
     @friends = @user.active_friends
   end
 

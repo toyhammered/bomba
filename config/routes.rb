@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index] do
     member do
-      patch 'avatar'
+      patch 'avatar', to: 'users#avatar'
+      get 'about', to: 'users#about'
     end
   end
 

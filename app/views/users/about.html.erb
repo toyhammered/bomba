@@ -1,0 +1,18 @@
+<div id="user-profile-header">
+  <%= render partial: 'header' %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-7">
+        <% if policy(@user).owner? %>
+          <h3>render edit button for information</h3>
+        <% end %>
+        <%= render partial: 'users/user_information' %>
+      </div>
+      <div class="col-md-3 friends">
+        <%= render partial: 'users/friends' %>
+      </div>
+    </div>
+  </div>
+
+</div>
