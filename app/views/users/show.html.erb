@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-offset-1 col-md-7">
-        <% if policy(@post).owner? %>
+        <% if policy(@user).owner? %>
           <%= render partial: 'posts/form', locals: {user: @user} %>
         <% end %>
         <%= render partial: 'posts/post', collection: @posts, locals: {user: @user} %>

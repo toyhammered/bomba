@@ -12,12 +12,6 @@ RSpec.describe Friendship, type: :model do
   let(:other_user) { create(:user)}
 
   context 'instances' do
-    # before(:all) do
-    #   me_user = create(:user)
-    #   friend = create(:user)
-    #   me_user.request_friendship(friend)
-    # end
-
     describe '#cancel_friendship' do
       it 'should cancel the friendship' do
         this_user = create(:user)

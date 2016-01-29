@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @requests_from = current_user.pending_friend_requests_from.map(&:user)
+    @requests_from = current_user.pending_friend_requests_from
     @friends = current_user.active_friends
   end
 
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @friends = @user.active_friends
   end
 
+  # change to avatar
   def update
     @user = User.find(params[:id])
     @user.assign_attributes(user_params)

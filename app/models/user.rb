@@ -33,34 +33,16 @@ class User < ActiveRecord::Base
   # scope :active_friends, -> { joins(:friendships).where.active('friendships.user_id = ? OR friendships.friend_id = ?', self.id, self.id) }
   # scope :pending_friends, -> { joins(:pending_friendships).where.active('friendships.user_id = ? OR friendships.friend_id = ?', self.id, self.id) }
 
-  def owns?(post)
-    id == post.user_id
-  end
-
   def request_friendship(user_2)
     pending_friendships.create(friend: user_2)
   end
 
   def pending_friend_requests_from
-    inverse_pending_friendships
-  end
-
-  def pending_friend_requests_to
-    pending_friendships
+    User.joins('INNER JOIN pending_friendships ON pending_friendships.user_id = users.id').where('pending_friendships.friend_id = ?', self.id)
   end
 
   def active_friends
-    User.joins(:friendships).where('friendships.user_id = ? OR friendships.friend_id = ?', self.id, self.id)
+    User.joins('INNER JOIN friendships ON friendships.friend_id = users.id').where('friendships.user_id = ?', self.id) +
+    User.joins(:friendships).where('friendships.friend_id = ?', self.id)
   end
-
-  def friendship_status(user_2)
-    friendships = Friendship.active_for(self)
-    pending_friendships = PendingFriendship.pending_for(self)
-
-    return ["not_friends"] if friendships.empty? && pending_friendships.empty?
-    return ["friends", friendships] if friendships.present?
-    return pending_friendships.take && pending_friendships.take.user == self ?  ["pending", pending_friendships] :  ["requested", pending_friendships]
-  end
-
-
 end

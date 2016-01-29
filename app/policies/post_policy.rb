@@ -1,9 +1,5 @@
 class PostPolicy < ApplicationPolicy
 
-  def owner?
-    user.owns?(record)
-  end
-
   def destroy?
     user.admin? || user_match
   end
