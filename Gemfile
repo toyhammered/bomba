@@ -4,7 +4,6 @@ ruby '2.3.0'
 gem 'rails', '4.2.5'
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
@@ -13,7 +12,6 @@ group :development do
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '1.6.0'
-  gem 'sqlite3'
   gem 'pry-rails'
   gem 'rails_db'
 end
@@ -26,6 +24,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.0'
 end
+gem 'pg'
 
 gem 'faker'
 gem 'placeholdit'
