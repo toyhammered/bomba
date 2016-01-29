@@ -5,6 +5,9 @@
       margin-bottom:-28px;
       .panel-body {
         padding-top: 40px;
+        img {
+          clear:left;
+        }
         a {
           bottom:0;
           margin-left:20px;
@@ -13,6 +16,11 @@
       .panel-footer {
         margin-bottom:0;
         padding-top:0;
+        h3 {
+          position:absolute;
+          margin-left: 250px;
+          margin-top: -50px;
+        }
         a {
           width: 225px;
           padding-top:2px;
@@ -28,6 +36,7 @@
             }
           }
         }
+
       }
     }
 

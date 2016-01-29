@@ -14,11 +14,11 @@ class UsersController < ApplicationController
   end
 
   # change to avatar
-  def update
+  def avatar
     @user = User.find(params[:id])
     @user.assign_attributes(user_params)
 
-    authorize @user
+    authorize @user, :update?
 
     if @user.save
       flash[:notice] = "Profile Picture Updated"

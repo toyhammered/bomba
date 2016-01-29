@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'registrations'}
   root 'home#index'
 
-  resources :users, only: [:show, :index, :update]
+  resources :users, only: [:show, :index] do
+    member do
+      patch 'avatar'
+    end
+  end
 
   resources :pending_friendships, only: [:create, :destroy] do
     member do
