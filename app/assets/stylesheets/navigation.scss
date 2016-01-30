@@ -1,0 +1,23 @@
+.navbar.navbar-default.navbar-fixed-top {
+  border: none;
+  .navbar-right {
+    li {
+      img {
+        margin-right: 5px;
+      }
+      a i {
+        @include scale(1.4)
+      }
+    }
+    li:nth-child(n+2) {
+      padding-top:2px;
+    }
+    .dropdown-menu {
+      background: $almost-black;
+      .divider {
+        padding-top: 0;
+      }
+    }
+  }
+
+}

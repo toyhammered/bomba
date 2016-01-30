@@ -26,6 +26,11 @@ RSpec.describe Friendship, type: :model do
         expect(Friendship.find_by(user_id: my_user, friend_id: other_user)).to be_nil
       end
     end
+  end
 
+  context 'validations' do
+    describe '#inverse_friendship_relationship_does_not_exist' do
+      pending "need to add this for friendships.rb"
+    end
   end
 end

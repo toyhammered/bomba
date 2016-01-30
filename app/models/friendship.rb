@@ -11,12 +11,9 @@ class Friendship < ActiveRecord::Base
 
   scope :active_for, ->(user) {where('friendships.user_id = ? OR friendships.friend_id = ?', user.id, user.id)}
 
-
   def cancel_friendship
     self.destroy
   end
-
-
 
   def inverse_friendship_relationship_does_not_exist
     if Friendship.find_by(user: self.friend, friend: self.user).present?

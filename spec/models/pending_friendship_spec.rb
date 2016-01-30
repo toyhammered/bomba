@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PendingFriendship, type: :model do
-  # it { should validate_presence_of(:user_id) }
-  # it { should validate_presence_of(:friend_id) }
-
   it { should belong_to(:user) }
   it { should belong_to(:friend) }
-
 
   context 'instances' do
     describe '#accept_friendship' do
@@ -16,23 +12,11 @@ RSpec.describe PendingFriendship, type: :model do
         my_user.request_friendship(other_user)
       end
       it 'should create new friendship' do
-
-          print "Pending: "
-          p PendingFriendship.all
-          print "Friendship: "
-          p Friendship.all
-
           pfr = PendingFriendship.last
-
           expect(PendingFriendship.where(id: pfr.id).take).to_not be_nil
 
           pfr.accept_friendship
           fr = Friendship.last
-          puts "After"
-          print "Pending: "
-          p PendingFriendship.all
-          print "Friendship: "
-          p fr
           expect(fr).to_not be_nil
       end
 
@@ -59,8 +43,8 @@ RSpec.describe PendingFriendship, type: :model do
   end # end of instances
 
   context 'validations' do
-    describe '#inverse_pending_friendship_relationship_does_not_exist' do
-      pending "need to figure out how to make this work with new model structure"
+    describe '#friendship_relationship_does_not_exist' do
+      pending "need to add this for pending_friendship.rb"
     end
   end
 

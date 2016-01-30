@@ -21,7 +21,11 @@ $brand-overlay-color: #3b3d40;
 $brand-bg-color: $brand-white;
 
 // Navbar
-$navbar-default-bg: #fff;
+$navbar-default-bg: $almost-black;
+$navbar-default-color: $medium-grey;
+$navbar-default-link-color: $navbar-default-color;
+$navbar-default-link-active-color: $orange;
+$navbar-default-link-hover-color: $orange;
 
 // Globals
 $body-bg: $dark-grey;
