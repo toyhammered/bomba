@@ -6,7 +6,6 @@ RSpec.describe User, type: :model do
   it { should validate_uniqueness_of(:username) }
 
   it { should have_many(:friendships) }
-  it { should have_many(:inverse_friendships) }
 
   let(:my_user) { create(:user) }
   let(:other_user) { create(:user) }
