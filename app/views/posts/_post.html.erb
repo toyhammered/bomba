@@ -50,7 +50,9 @@
             <%= render partial: 'comments/comment', collection: post.comments %>
           <% elsif post.comments.last.present? %>
             <%= render partial: 'comments/comment', locals: {comment: post.comments.last} %>
-            <%= link_to "see more comments", post_path(post) %>
+            <% if post.comments.count > 1 %>
+              <%= link_to "see more comments", post_path(post) %>
+            <% end %>
           <% end %>
 
         </div>

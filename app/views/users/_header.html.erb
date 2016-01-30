@@ -1,15 +1,30 @@
+<% if policy(@user).update? %>
+  <div class="modal fade" id='myModal' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- Modal -->
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" id="myModalLabel">Upload Avatar</h4>
+        </div>
+        <div class="modal-body">
+          <%= render partial: 'avatar_upload' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
 <div class="row">
   <div class="panel">
     <div class="panel-group">
       <div class="panel-body">
-        <% if policy(@user).update? %>
-          <%= render partial: 'avatar_upload' %>
-        <% end %>
         <div class="avatar">
-          <i class="fa fa-2x fa-camera edit-avatar"></i>
-
+          <% if policy(@user).update? %>
+            <i class="fa fa-2x fa-camera edit-avatar", data-target="#myModal", data-toggle="modal" ></i>
+          <% end %>
           <%= image_tag(@user.avatar.profile_avatar) %>
-
         </div>
       </div>
       <div class="panel-footer">
