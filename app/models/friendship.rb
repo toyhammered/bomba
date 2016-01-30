@@ -4,7 +4,7 @@ class Friendship < ActiveRecord::Base
 
   validates_presence_of :user_id
   validates_presence_of :friend_id
-  # validates user_id != friend_id
+
   validates :user_id, exclusion: { in: ->(friendship) { [friendship.friend_id] } }
   validates_uniqueness_of :user, scope: :friend
   validate :inverse_friendship_relationship_does_not_exist

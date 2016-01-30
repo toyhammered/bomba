@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       flash[:error] = "Comment failed to save."
     end
 
-    redirect_to [@post]
+    redirect_to :back
   end
 
   def destroy

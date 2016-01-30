@@ -18,10 +18,7 @@ class User < ActiveRecord::Base
   # validates :avatar, presence: true
 
   has_many :pending_friendships, dependent: :destroy
-  has_many :inverse_pending_friendships, class_name: "PendingFriendship", foreign_key: "friend_id", dependent: :destroy
-
   has_many :friendships, dependent: :destroy
-  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id", dependent: :destroy
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy

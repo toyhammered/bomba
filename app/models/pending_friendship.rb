@@ -33,9 +33,6 @@ class PendingFriendship < ActiveRecord::Base
   end
 
   def already_friends?
-    # Friendship.find_by(user: user, friend: friend).present? ||
-    # Friendship.find_by(user: friend, friend: user).present?
-    # THIS IS THE ERROR
     !user.friendships.build(user_id: user.id, friend_id: friend.id).valid?
   end
 end

@@ -23,24 +23,18 @@ class UsersController < ApplicationController
   # change to avatar
   def avatar
     @user = User.find(params[:id])
-    @user.assign_attributes(user_params)
-
+    @user.assign_attributes(params.fetch(:user, {}).permit(:avatar))
     authorize @user, :update?
 
-    if @user.save
+    if params[:user].nil?
+      flash[:error] = "You must chose a file."
+    elsif @user.save
       flash[:notice] = "Profile Picture Updated"
     else
-      flash[:error] = "There was an error updating your picture. Please try again."
+      flash[:error] = "Please choose a valid file to upload"
     end
 
     redirect_to user_path(@user.username)
   end
-
-  private
-
-  def user_params
-    params.require(:user).permit(:avatar)
-  end
-
 
 end
