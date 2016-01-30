@@ -45,12 +45,14 @@
       <div class="panel-group panel-group-comments">
         <div class="panel-heading panel-heading-inverse">
           <%= render partial: 'comments/form', locals: {post: post, user: current_user} %>
-          <%= render partial: 'comments/comment', collection: post.comments %>
-        </div>
+          <%# Some type of way to tell if it is on post show or another page %>
+          <% if current_page?(controller: 'posts', action: 'show') %>
+            <%= render partial: 'comments/comment', collection: post.comments %>
+          <% elsif post.comments.last.present? %>
+            <%= render partial: 'comments/comment', locals: {comment: post.comments.last} %>
+            <%= link_to "see more comments", post_path(post) %>
+          <% end %>
 
-
-        <div class="panel-footer panel-footer-inverse">
-          "read more" link here
         </div>
       </div>
 
