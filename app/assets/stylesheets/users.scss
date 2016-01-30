@@ -5,12 +5,26 @@
       margin-bottom:-28px;
       .panel-body {
         padding-top: 40px;
-        img {
-          clear:left;
-        }
         a {
           bottom:0;
           margin-left:20px;
+        }
+        .avatar {
+          position: relative;
+          width: 225px;
+          .edit-avatar {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            color: #fff;
+            opacity: 0.5;
+            &:hover {
+              @include transition(.3s);
+              opacity: 1;
+            }
+          }
         }
       }
       .panel-footer {
