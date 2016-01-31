@@ -9,7 +9,7 @@ class PendingFriendship < ActiveRecord::Base
   validates_uniqueness_of :user, scope: :friend
   validate :friendship_relationship_does_not_exist
 
-  scope :pending_for, ->(user) {where('pending_friendships.user_id = ? OR pending_friendships.friend_id = ?', user.id, user.id)}
+  # scope :pending_for, ->(user) {where('pending_friendships.user_id = ? OR pending_friendships.friend_id = ?', user.id, user.id)}
 
   def accept_friendship
     user.friendships.create(friend: friend)
