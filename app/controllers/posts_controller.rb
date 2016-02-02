@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = "Post was created"
+
     else
       flash[:error] = "Error creating Post. Please try again."
     end

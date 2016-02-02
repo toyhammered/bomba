@@ -45,9 +45,13 @@ class CreateSeeds
   def new_post(amount, users)
     amount.times do
       user = users.sample
-      Post.create!(
+      post = Post.create!(
         user_id: user.id,
         body: Faker::Hipster.paragraph
+      )
+      user.activities.create!(
+        action: "Create",
+        trackable: post
       )
     end
   end

@@ -1,0 +1,11 @@
+<h1>Activities#index</h1>
+<p>Find me in app/views/activities/index.html.erb</p>
+
+<% @active_friends.each do |friend| %>
+  <h3><%= friend.username %></h3>
+  <% friend.posts.each do |post| %>
+  <p>
+    <%= post.body %>
+  </p>
+  <% end %>
+<% end %>

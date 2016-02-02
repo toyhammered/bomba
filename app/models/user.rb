@@ -16,11 +16,12 @@ class User < ActiveRecord::Base
 
   # check why this doesn't work
   # validates :avatar, presence: true
-
+  has_many :activities
   has_many :pending_friendships, dependent: :destroy
   has_many :friendships, dependent: :destroy
 
-  has_many :posts, dependent: :destroy
+  has_many :posts, through: :activities, source: :trackable, source_type: :Post, dependent: :destroy # -> {includes :comments}
+
   has_many :comments, dependent: :destroy
 
   # Avatar uploader using carrierwave
