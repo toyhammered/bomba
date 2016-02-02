@@ -11,8 +11,8 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
 
     if @post.save
+      track_activity(@post)
       flash[:notice] = "Post was created"
-
     else
       flash[:error] = "Error creating Post. Please try again."
     end
@@ -26,6 +26,7 @@ class PostsController < ApplicationController
     authorize @post
 
     if @post.save
+      track_activity(@post)
       flash[:notice] = "Post was updated"
     else
       flash[:error] = "There was an error updating the post. Please try again."
@@ -40,6 +41,7 @@ class PostsController < ApplicationController
     authorize @post
 
     if @post.destroy
+      track_activity(@post)
       flash[:notice] = "Post was successfully deleted."
     else
       flash[:error] = "There was an error deleting the post"

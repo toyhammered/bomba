@@ -50,7 +50,7 @@ class CreateSeeds
         body: Faker::Hipster.paragraph
       )
       user.activities.create!(
-        action: "Create",
+        action: "create",
         trackable: post
       )
     end

@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :activity do
-    user nil
-trackable_id 1
-trackable_type "MyString"
-action "MyString"
+    user
+    trackable_id
+    trackable_type
+    action
   end
 
 end
