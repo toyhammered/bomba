@@ -1,8 +1,4 @@
 <% @active_friends.each do |friend| %>
   <h3><%= friend.username %> || <%= friend.id %></h3>
-  <% friend.posts.each do |post| %>
-  <p>
-    <%= post.body %>
-  </p>
-  <% end %>
+  <%= render partial: 'posts/post', collection: friend.posts, locals: {user: friend} %>
 <% end %>

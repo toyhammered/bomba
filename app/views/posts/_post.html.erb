@@ -46,10 +46,10 @@
         <div class="panel-heading panel-heading-inverse">
           <%= render partial: 'comments/form', locals: {post: post, user: current_user} %>
           <%# Some type of way to tell if it is on post show or another page %>
-          <% if current_page?(controller: 'posts', action: 'show') %>
+          <% if request.path.include?("/posts") %>
             <%= render partial: 'comments/comment', collection: post.comments %>
-          <% elsif post.comments.last.present? %>
-            <%= render partial: 'comments/comment', locals: {comment: post.comments.last} %>
+          <% elsif post.comments.first.present? %>
+            <%= render partial: 'comments/comment', locals: {comment: post.comments.first} %>
             <% if post.comments.count > 1 %>
               <%= link_to "see more comments", post_path(post) %>
             <% end %>
