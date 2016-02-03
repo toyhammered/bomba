@@ -1,4 +1,29 @@
-<% @active_friends.each do |friend| %>
-  <h3><%= friend.username %> || <%= friend.id %></h3>
-  <%= render partial: 'posts/post', collection: friend.posts, locals: {user: friend} %>
-<% end %>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-offset-1 col-md-7">
+      <%= render partial: 'posts/form', locals: {user: current_user} %>
+      <% @active_friends.each do |friend| %>
+        <%= render partial: 'posts/post', collection: friend.posts, locals: {user: friend} %>
+      <% end %>
+    </div>
+
+    <div class="col-md-3" id="activity">
+      <div class="row">
+
+        <div class="panel">
+          <div class="panel-heading text-center">Recent Activity</div>
+          <div class="panel-body">
+            <div class="col-md-12">
+              <div class="row">
+                <%= render partial: 'activities/activity', collection: @activities %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
