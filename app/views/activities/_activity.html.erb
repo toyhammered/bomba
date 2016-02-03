@@ -1,5 +1,5 @@
 <small><p>
   <%= link_to activity.user.username, user_path(activity.user.username) %>
-  <%= "#{activity.action}d" %> <%= link_to "status" %>
+  <%= "#{activity.action}d" %> <%= link_to "status", post_path(activity.trackable_id) %>
   <%= time_ago_in_words(activity.created_at) %> ago
 </p></small>

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   # check why this doesn't work
   # validates :avatar, presence: true
-  has_many :activities
+  has_many :activities, dependent: :destroy
   has_many :pending_friendships, dependent: :destroy
   has_many :friendships, dependent: :destroy
 

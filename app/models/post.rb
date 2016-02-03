@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
 
-  # has_many :activites, as: :trackable
+  has_many :activities, as: :trackable, dependent: :destroy
 
   has_many :comments, dependent: :destroy
 

@@ -41,7 +41,6 @@ class PostsController < ApplicationController
     authorize @post
 
     if @post.destroy
-      track_activity(@post)
       flash[:notice] = "Post was successfully deleted."
     else
       flash[:error] = "There was an error deleting the post"
