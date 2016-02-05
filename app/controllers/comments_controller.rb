@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     if @comment.save
+      track_activity(@comment)
       flash[:notice] = "Comment saved successfully."
     else
       flash[:error] = "Comment failed to save."
