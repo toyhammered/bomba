@@ -26,6 +26,7 @@ RSpec.describe PendingFriendship, type: :model do
         pfr.accept_friendship
         expect(PendingFriendship.where(id: pfr.id).take).to be_nil
       end
+
     end
 
     describe '#deny_friendship' do

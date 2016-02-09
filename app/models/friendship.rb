@@ -1,6 +1,7 @@
 class Friendship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, class_name: "User"
+  has_many :activities, as: :trackable, dependent: :destroy
 
   validates_presence_of :user_id
   validates_presence_of :friend_id
@@ -8,8 +9,6 @@ class Friendship < ActiveRecord::Base
   validates :user_id, exclusion: { in: ->(friendship) { [friendship.friend_id] } }
   validates_uniqueness_of :user, scope: :friend
   validate :inverse_friendship_relationship_does_not_exist
-
-  # scope :active_for, ->(user) {where('friendships.user_id = ? OR friendships.friend_id = ?', user.id, user.id)}
 
   def cancel_friendship
     self.destroy
