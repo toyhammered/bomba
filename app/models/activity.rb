@@ -11,6 +11,12 @@ class Activity < ActiveRecord::Base
       user.activities.find_or_create_by!(action: action, trackable: trackable, trackable_type: trackable.class) do |activity|
         activity.update_attributes(updated_at: Time.now)
       end
+    when "accept"
+      user = User.find(trackable.user_id)
+      friend = User.find(trackable.friend_id)
+      
+      user.activities.create!(action: action, trackable: trackable)
+      friend.activities.create!(action: action, trackable: trackable)
     else
       raise "Unable to track action."
     end
