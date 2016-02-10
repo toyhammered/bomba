@@ -1,0 +1,5 @@
+<% if activity.user.username == friendship.user.username %>
+  became friends with <%= link_to friendship.friend.username, user_path(friendship.friend.username) %>
+<% else %>
+  became friends with <%= link_to friendship.user.username, user_path(friendship.user.username) %>
+<% end %>

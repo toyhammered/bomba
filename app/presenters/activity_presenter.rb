@@ -7,9 +7,7 @@ class ActivityPresenter < SimpleDelegator
 
   def render_activity
     link_to(activity.user.username, user_path(activity.user.username)) + " " +
-    render_partial + " " +
-    time_ago_in_words(activity.created_at) + " " + "ago"
-
+    render_partial
   end
 
   def render_partial

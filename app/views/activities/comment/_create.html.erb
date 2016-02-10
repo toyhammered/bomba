@@ -1,1 +1,1 @@
-commented on a <%= link_to "post", post_path(comment.post_id) %>
+commented on a <%= link_to "post", post_path(comment.post_id) %> <%= time_ago_in_words(activity.created_at) %> ago
