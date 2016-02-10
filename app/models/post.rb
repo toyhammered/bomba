@@ -1,10 +1,13 @@
 class Post < ActiveRecord::Base
   acts_as_votable
-  default_scope { order(created_at: :desc)}
+  default_scope { includes(:votes).order(created_at: :desc)}
 
   belongs_to :user
 
   has_many :activities, as: :trackable, dependent: :destroy
+
+  has_many :votes, as: :votable, class_name: "ActsAsVotable::Vote"
+  # has_many :posts, through: :activities, source: :trackable, source_type: :Post, dependent: :destroy
 
   has_many :comments, dependent: :destroy
 

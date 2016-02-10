@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   # Timeline
   def show
     @user = User.find_by(username: params[:id])
-    @posts = Post.where(user_id: @user)
-    @friends = @user.active_friends
+    @posts = @user.posts.includes(:votes, comments: [:votes])
+    @friends = @user.active_friends # .includes(posts: [:votes, :comments])
   end
 
   # About

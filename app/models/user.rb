@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
     User.joins('INNER JOIN friendships ON friendships.friend_id = users.id').
          where('friendships.user_id = ?', self.id).
          union(User.joins(:friendships).
-                    where('friendships.friend_id = ?', self.id))
+                    where('friendships.friend_id = ?', self.id)).
+         includes(posts: [:votes, :comments])
   end
 end
