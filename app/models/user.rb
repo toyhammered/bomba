@@ -14,22 +14,17 @@ class User < ActiveRecord::Base
     length: { minimum: 3, maximum: 20 },
     format: { with: USERNAME_REGEX }
 
-  # check why this doesn't work
-  # validates :avatar, presence: true
   has_many :activities, dependent: :destroy
   has_many :pending_friendships, dependent: :destroy
   has_many :friendships, dependent: :destroy
 
-  has_many :posts, through: :activities, source: :trackable, source_type: :Post, dependent: :destroy # -> {includes :comments}
+  has_many :posts, through: :activities, source: :trackable, source_type: :Post, dependent: :destroy
 
   has_many :comments, dependent: :destroy
 
   # Avatar uploader using carrierwave
   mount_uploader :avatar, AvatarUploader
   after_commit :remove_previously_stored_avatar, on: :update
-
-  # scope :active_friends, -> { joins(:friendships).where.active('friendships.user_id = ? OR friendships.friend_id = ?', self.id, self.id) }
-  # scope :pending_friends, -> { joins(:pending_friendships).where.active('friendships.user_id = ? OR friendships.friend_id = ?', self.id, self.id) }
 
   def request_friendship(user_2)
     pending_friendships.create(friend: user_2)

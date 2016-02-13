@@ -7,7 +7,6 @@ class Post < ActiveRecord::Base
   has_many :activities, as: :trackable, dependent: :destroy
 
   has_many :votes, as: :votable, class_name: "ActsAsVotable::Vote"
-  # has_many :posts, through: :activities, source: :trackable, source_type: :Post, dependent: :destroy
 
   has_many :comments, dependent: :destroy
 
