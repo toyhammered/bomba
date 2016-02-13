@@ -1,7 +1,7 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
   belongs_to :trackable, polymorphic: true
-  default_scope { order(created_at: :desc)}
+  default_scope { includes(:user, :trackable).order(created_at: :desc)}
 
   def self.track(user, trackable, action)
     case action
