@@ -1,5 +1,7 @@
 <% if activity.trackable.votable_type == "Post" %>
-  bombed a <%= link_to "post", post_path(activity.trackable.votable_id) %> by <%= link_to activity.trackable.votable.user.username, user_path(activity.trackable.votable.user.username) %>
+  bombed a <%= link_to "post", post_path(activity.trackable.votable_id) %>
 <% elsif activity.trackable.votable_type == "Comment" %>
-  bombed a <%= link_to "comment", post_path(activity.trackable.votable.post_id) %> on a <%= link_to "post", post_path(activity.trackable.votable.post_id) %>
+  bombed a <%= link_to "comment", post_path(activity.trackable.votable.post_id) %>
 <% end %>
+
+by <%= link_to activity.trackable.votable.user.username, user_path(activity.trackable.votable.user.username) %>
