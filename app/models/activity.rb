@@ -14,9 +14,13 @@ class Activity < ActiveRecord::Base
     when "accept"
       user = User.find(trackable.user_id)
       friend = User.find(trackable.friend_id)
-      
+
       user.activities.create!(action: action, trackable: trackable)
       friend.activities.create!(action: action, trackable: trackable)
+    when "downvote", "upvote"
+      user.activities.find_or_create_by!(action: action, trackable_id: trackable.id, trackable_type: ActsAsVotable::Vote) do |activity|
+        activity.update_attributes(updated_at: Time.now)
+      end
     else
       raise "Unable to track action."
     end

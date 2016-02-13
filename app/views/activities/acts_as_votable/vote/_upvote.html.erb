@@ -1,0 +1,5 @@
+<% if activity.trackable.votable_type == "Post" %>
+  liked a <%= link_to "post", post_path(activity.trackable.votable_id) %> by <%= link_to activity.trackable.votable.user.username, user_path(activity.trackable.votable.user.username) %>
+<% elsif activity.trackable.votable_type == "Comment" %>
+  liked a <%= link_to "comment", post_path(activity.trackable.votable.post_id) %> on a <%= link_to "post", post_path(activity.trackable.votable.post_id) %>
+<% end %>

@@ -12,7 +12,10 @@ class ActivityPresenter < SimpleDelegator
 
   def render_partial
     locals = {activity: activity, presenter: self}
-    locals[activity.trackable_type.underscore.to_sym] = activity.trackable
+    # weird class system with ActsAsVotable/Vote
+    key = activity.trackable_type.gsub(/ActsAsVotable::/, "").underscore.to_sym
+    locals[key] = activity.trackable
+
     render partial: partial_path, locals: locals
   end
 

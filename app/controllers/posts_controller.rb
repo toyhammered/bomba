@@ -53,12 +53,16 @@ class PostsController < ApplicationController
   def upvote
     @post = Post.find(params[:id])
     @post.liked_by current_user
+    @vote = ActsAsVotable::Vote.find_by(votable_id: @post.id, votable_type: "Post")
+    track_activity(@vote)
     redirect_to :back
   end
 
   def downvote
     @post = Post.find(params[:id])
     @post.disliked_by current_user
+    @vote = ActsAsVotable::Vote.find_by(votable_id: @post.id, votable_type: "Post")
+    track_activity(@vote)
     redirect_to :back
   end
 
