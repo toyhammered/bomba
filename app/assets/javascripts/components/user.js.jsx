@@ -9,7 +9,7 @@ var User = React.createClass({
 
   render: function() {
     return (
-      <div className="col-xs-12 col-sm-6  col-md-3">
+      <div id={"user-" + this.props.user.id} className="col-xs-12 col-sm-6  col-md-3">
         <div className="thumbnail">
           <a href={"users/" + this.props.user.username}>
             <img src={this.props.avatar} />
