@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     @requests_from = current_user.pending_friend_requests_from
     @friends = current_user.active_friends
+
   end
 
   # Timeline
