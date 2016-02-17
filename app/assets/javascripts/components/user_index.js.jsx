@@ -1,5 +1,5 @@
-var User = React.createClass({
-  displayName: 'User',
+var UserIndex = React.createClass({
+  displayName: 'UserIndex',
 
   propTypes: {
     user: React.PropTypes.object,

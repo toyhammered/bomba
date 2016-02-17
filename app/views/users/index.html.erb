@@ -6,7 +6,7 @@
   </div>
   <div class="row requested-friends">
     <% @requests_from.each do |request| %>
-      <%= react_component('User',
+      <%= react_component('UserIndex',
                                 { user: request,
                                   avatar: request.avatar.large_avatar.to_s,
                                   friendship_button: profile_friendship_button(request).to_s
@@ -23,7 +23,7 @@
   </div>
   <div class="row requested-friends">
     <% @friends.each do |friend| %>
-      <%= react_component('User',
+      <%= react_component('UserIndex',
                                 { user: friend,
                                   avatar: friend.avatar.large_avatar.to_s,
                                   friendship_button: profile_friendship_button(friend).to_s
