@@ -1,5 +1,5 @@
-var UserShow = React.createClass({
-  displayName: 'UserForm',
+var PostForm = React.createClass({
+  displayName: 'PostForm',
 
   propTypes: {
     user: React.PropTypes.object,
