@@ -8,9 +8,6 @@ var Post = React.createClass({
   },
 
   render: function() {
-
-    var createComment = ({body}) => <Comment comment={body} />;
-
     return (
       <div className="row">
         <div className="col-md-offset-1">
@@ -64,8 +61,7 @@ var Post = React.createClass({
                            authenticity_token={this.props.comment_authenticity_token}
                         />
 
-              {/* }<CommentContainer comments={postId.comments} /> */}
-              {/* <div>{this.props.comments.map(createComment)} </div> */}
+               <CommentsContainer comments={this.props.post.comments} />
 
               {/*
               <%# Some type of way to tell if it is on post show or another page %>

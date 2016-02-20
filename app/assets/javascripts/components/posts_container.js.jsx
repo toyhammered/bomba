@@ -1,4 +1,10 @@
 var PostsContainer = React.createClass({
+  propTypes: {
+    posts: React.PropTypes.object,
+    user: React.PropTypes.object,
+    current_user: React.PropTypes.object,
+    commment_authenticity_token: React.PropTypes.string
+  },
   /*
     We need to get the posts as JSON.
     This will be implemented after I have everything working without AJAX

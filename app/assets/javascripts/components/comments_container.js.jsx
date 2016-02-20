@@ -1,6 +1,8 @@
 var CommentsContainer = React.createClass({
 
   render: function() {
-    return <div />;
+    return (
+      <Comments comments={this.props.comments} />
+    );
   }
 });
