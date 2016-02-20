@@ -1,9 +1,9 @@
 var Post = React.createClass({
   propTypes: {
-    postId: React.PropTypes.number,
-    postBody: React.PropTypes.string,
-    postCreated: React.PropTypes.string,
+    key: React.PropTypes.number,
+    post: React.PropTypes.object,
     user: React.PropTypes.object,
+    current_user: React.PropTypes.object,
     comment_authenticity_token: React.PropTypes.string
   },
 
@@ -19,7 +19,7 @@ var Post = React.createClass({
 
             <div className="panel-heading panel-heading-inverse">
               <a href={"users/" + this.props.user.username} >{this.props.user.username} </a>
-              <a href={"/posts/" + this.props.postId} >posted this {$.timeago(this.props.postCreated)} </a>
+              <a href={"/posts/" + this.props.post.id} >posted this {$.timeago(this.props.post.created_at)} </a>
 
               <div className="dropdown pull-right">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-2x fa-cog"></i></a>
@@ -32,14 +32,14 @@ var Post = React.createClass({
 
             <div className="panel-body panel-body-inverse panel-body-post">
               <div className="text-area">
-                {this.props.postBody}
+                {this.props.post.body}
               </div>
             </div>
           </div>
 
           <div className="panel-footer panel-footer-inverse panel-footer-post">
-            <a rel="nofollow" data-method="put" href={"/posts/" + this.props.postId + "/like"}><i className="fa fa-2x fa-heart"></i></a>
-            <a rel="nofollow" data-method="put" href={"/posts/" + this.props.postId + "/dislike"}><i className="fa fa-2x fa-bomb"></i></a>
+            <a rel="nofollow" data-method="put" href={"/posts/" + this.props.post.id + "/like"}><i className="fa fa-2x fa-heart"></i></a>
+            <a rel="nofollow" data-method="put" href={"/posts/" + this.props.post.id + "/dislike"}><i className="fa fa-2x fa-bomb"></i></a>
           </div>
 
           {/*
@@ -59,12 +59,13 @@ var Post = React.createClass({
 
           <div className="panel-group panel-group-comments">
             <div className="panel-heading panel-heading-inverse">
-              {/* <%= render partial: 'comments/form', locals: {post: post, user: current_user} %> */}
-              <CommentForm postId={this.props.postId}
+              <CommentForm postId={this.props.post.id}
                            current_user={this.props.current_user}
                            authenticity_token={this.props.comment_authenticity_token}
                         />
-                {/* <div>{this.props.comments.map(createComment)} </div> */}
+
+              {/* }<CommentContainer comments={postId.comments} /> */}
+              {/* <div>{this.props.comments.map(createComment)} </div> */}
 
               {/*
               <%# Some type of way to tell if it is on post show or another page %>
