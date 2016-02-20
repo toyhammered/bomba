@@ -21,6 +21,10 @@ var PostsContainer = React.createClass({
   */
 
   render: function() {
-    return <Posts posts={this.props.posts} user={this.props.user} />;
+    return <Posts posts={this.props.posts}
+                  user={this.props.user}
+                  current_user={this.props.current_user}
+                  comment_authenticity_token={this.props.comment_authenticity_token}
+            />;
   }
 });

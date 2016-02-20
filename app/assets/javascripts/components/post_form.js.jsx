@@ -1,9 +1,6 @@
 var PostForm = React.createClass({
-  displayName: 'PostForm',
-
   propTypes: {
     user: React.PropTypes.object,
-    avatar: React.PropTypes.string,
     authenticity_token: React.PropTypes.string
   },
 
@@ -15,7 +12,7 @@ var PostForm = React.createClass({
         <div className="row">
           <div className="col-md-offset-1">
             <div className="panel panel-inverse panel-post">
-              <img src={this.props.avatar} />
+              <img src={this.props.user.avatar.post_avatar.url} />
               <div className="panel-body panel-body-inverse">
                 <textarea rows="4" className="form-control" placeholder="" name="post[body]" id="post_body"></textarea>
               </div>

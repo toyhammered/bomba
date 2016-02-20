@@ -2,7 +2,9 @@ var Post = React.createClass({
   propTypes: {
     postId: React.PropTypes.number,
     postBody: React.PropTypes.string,
-    user: React.PropTypes.object
+    postCreated: React.PropTypes.string,
+    user: React.PropTypes.object,
+    comment_authenticity_token: React.PropTypes.string
   },
 
   render: function() {
@@ -16,7 +18,9 @@ var Post = React.createClass({
             <img src={this.props.user.avatar.post_avatar.url} />
 
             <div className="panel-heading panel-heading-inverse">
-              {/* link_to user.username, user_path(user.username)  link_to "posted this #{time_ago_in_words(post.created_at)} ago", post_path(post) */}
+              <a href={"users/" + this.props.user.username} >{this.props.user.username} </a>
+              <a href={"/posts/" + this.props.postId} >posted this {$.timeago(this.props.postCreated)} </a>
+
               <div className="dropdown pull-right">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-2x fa-cog"></i></a>
                 <ul className="dropdown-menu">
@@ -56,6 +60,10 @@ var Post = React.createClass({
           <div className="panel-group panel-group-comments">
             <div className="panel-heading panel-heading-inverse">
               {/* <%= render partial: 'comments/form', locals: {post: post, user: current_user} %> */}
+              <CommentForm postId={this.props.postId}
+                           current_user={this.props.current_user}
+                           authenticity_token={this.props.comment_authenticity_token}
+                        />
                 {/* <div>{this.props.comments.map(createComment)} </div> */}
 
               {/*

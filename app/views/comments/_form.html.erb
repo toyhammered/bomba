@@ -3,9 +3,13 @@
       <div class="panel panel-inverse panel-comment-form">
         <div class="panel-body panel-body-inverse">
           <div class="input-group">
-            <span class="input-group-addon" id="sizing-addon1"><%= image_tag(user.avatar.comment_avatar) %></span>
+            <span class="input-group-addon" id="sizing-addon1">
+              <%= image_tag(user.avatar.comment_avatar) %>
+            </span>
             <%= f.text_area :body, rows: 1, class: 'form-control', placeholder: 'Your Comment' %>
-            <span class="input-group-addon"><%= f.submit "OK", class: 'btn btn-sm btn-primary pull-right' %></span>
+            <span class="input-group-addon">
+              <%= f.submit "OK", class: 'btn btn-sm btn-primary pull-right' %>
+            </span>
           </div>
         </div>
       </div>
