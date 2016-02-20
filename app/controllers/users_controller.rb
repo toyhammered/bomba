@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:id])
     @posts = @user.posts.includes(:votes, comments: [:votes])
     @friends = @user.active_friends # .includes(posts: [:votes, :comments])
+
   end
 
   # About

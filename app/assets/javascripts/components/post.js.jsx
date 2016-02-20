@@ -1,18 +1,19 @@
 var Post = React.createClass({
-  displayName: 'Post',
-
   propTypes: {
-    user: React.PropTypes.object,
-    avatar: React.PropTypes.string,
-    post: React.PropTypes.object
+    postId: React.PropTypes.number,
+    postBody: React.PropTypes.string,
+    user: React.PropTypes.object
   },
 
   render: function() {
+
+    var createComment = ({body}) => <Comment comment={body} />;
+
     return (
       <div className="row">
         <div className="col-md-offset-1">
           <div className="panel panel-inverse panel-post">
-            <img src={this.props.avatar} />
+            <img src={this.props.user.avatar.post_avatar.url} />
 
             <div className="panel-heading panel-heading-inverse">
               {/* link_to user.username, user_path(user.username)  link_to "posted this #{time_ago_in_words(post.created_at)} ago", post_path(post) */}
@@ -27,17 +28,20 @@ var Post = React.createClass({
 
             <div className="panel-body panel-body-inverse panel-body-post">
               <div className="text-area">
-                {this.props.post.body}
+                {this.props.postBody}
               </div>
             </div>
           </div>
 
-          {/* }
-          <div class="panel-footer panel-footer-inverse panel-footer-post">
+          <div className="panel-footer panel-footer-inverse panel-footer-post">
+            <a rel="nofollow" data-method="put" href={"/posts/" + this.props.postId + "/like"}><i className="fa fa-2x fa-heart"></i></a>
+            <a rel="nofollow" data-method="put" href={"/posts/" + this.props.postId + "/dislike"}><i className="fa fa-2x fa-bomb"></i></a>
+          </div>
+
+          {/*
             <%= link_to "<i class='fa fa-2x fa-heart'></i>".html_safe, like_post_path(post), method: :put %>
             <%= post.get_likes.size - post.get_dislikes.size %>
             <%= link_to "<i class='fa fa-2x fa-bomb'></i>".html_safe, dislike_post_path(post), method: :put %>
-          </div>
           <div class="panel-footer panel-footer-inverse panel-footer-votes">
             <% if post.get_likes.size != 0 %>
               <p>Your post has been Liked by <%= post.get_likes.size %> people</p>
@@ -52,12 +56,7 @@ var Post = React.createClass({
           <div className="panel-group panel-group-comments">
             <div className="panel-heading panel-heading-inverse">
               {/* <%= render partial: 'comments/form', locals: {post: post, user: current_user} %> */}
-                {Object.keys(this.props.comments).map(function(comment){
-                  {/* some issue with the looping */}
-                  return <Comment comment={comment[0]}/>;
-
-                }.bind(this))
-                }
+                {/* <div>{this.props.comments.map(createComment)} </div> */}
 
               {/*
               <%# Some type of way to tell if it is on post show or another page %>

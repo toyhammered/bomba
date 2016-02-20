@@ -12,14 +12,22 @@
             }) %>
           <%#= render partial: 'posts/form', locals: {user: @user} %>
         <% end %>
-        <% @posts.each do |post| %>
-          <%= react_component('Post',
+        <%= react_component("PostsContainer",
+            {
+              # I need to add some type of path to get all the posts in json format
+              # for now I will just pass in all the posts prefetched.
+              posts: @posts,
+              user: @user,
+              authenticity_token: form_authenticity_token
+            }) %>
+        <%# @posts.each do |post| %>
+          <%#= react_component('Post',
             { user: @user,
               avatar: @user.avatar.post_avatar.to_s,
               post: post,
               comments: post.comments
             }) %>
-        <% end %>
+        <%# end %>
         <%#= render partial: 'posts/post', collection: @posts, locals: {user: @user} %>
 
       </div>
