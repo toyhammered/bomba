@@ -13,22 +13,11 @@
         <% end %>
         <%= react_component("PostsContainer",
             {
-              # I need to add some type of path to get all the posts in json format
-              # for now I will just pass in all the posts prefetched.
-              posts: @posts,
+              posts: api_v1_posts_path,
               user: @user,
               current_user: current_user,
               comment_authenticity_token: form_authenticity_token
             }) %>
-        <%# @posts.each do |post| %>
-          <%#= react_component('Post',
-            { user: @user,
-              avatar: @user.avatar.post_avatar.to_s,
-              post: post,
-              comments: post.comments
-            }) %>
-        <%# end %>
-        <%#= render partial: 'posts/post', collection: @posts, locals: {user: @user} %>
 
       </div>
       <div class="col-md-3 friends">

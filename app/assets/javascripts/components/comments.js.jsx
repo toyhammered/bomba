@@ -1,9 +1,15 @@
 var Comments = React.createClass({
   propTypes: {
-    comments: React.PropTypes.object
+    comments: React.PropTypes.array
   },
-  
+
   render: function() {
-    return <div>{this.props.comments}</div>;
+
+    var createComment = (comment) => <Comment key={comment.id}
+                                              comment={comment}
+                                              user={comment.user} />;
+    return (
+      <div>{this.props.comments.map(createComment)}</div>
+    );
   }
 });

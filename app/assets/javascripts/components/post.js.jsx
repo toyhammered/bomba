@@ -4,6 +4,7 @@ var Post = React.createClass({
     post: React.PropTypes.object,
     user: React.PropTypes.object,
     current_user: React.PropTypes.object,
+    posts_path: React.PropTypes.string,
     comment_authenticity_token: React.PropTypes.string
   },
 
@@ -22,7 +23,7 @@ var Post = React.createClass({
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-2x fa-cog"></i></a>
                 <ul className="dropdown-menu">
                   {/* }<li> link_to "Edit Post", "#", "data-target": "#myModal_#{post.id}", "data-toggle": "modal" </li> */}
-                  {/* }<li>link_to "Delete Post", post_path(post), method: :delete, className: 'navbar-link', data: {confirm: "Are you sure?"}</li> */}
+                  <li><a className="navbar-link" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href={"/posts/" + this.props.post.id}>Delete Post</a></li>
                 </ul>
               </div>
             </div>
@@ -56,12 +57,16 @@ var Post = React.createClass({
 
           <div className="panel-group panel-group-comments">
             <div className="panel-heading panel-heading-inverse">
-              <CommentForm postId={this.props.post.id}
-                           current_user={this.props.current_user}
-                           authenticity_token={this.props.comment_authenticity_token}
-                        />
+              <CommentForm
+                postId={this.props.post.id}
+                current_user={this.props.current_user}
+                authenticity_token={this.props.comment_authenticity_token}
+              />
 
-               <CommentsContainer comments={this.props.post.comments} />
+              <CommentsContainer
+                comments={this.props.posts_path}
+                postId = {this.props.post.id}
+              />
 
               {/*
               <%# Some type of way to tell if it is on post show or another page %>

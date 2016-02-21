@@ -1,36 +1,41 @@
 var PostsContainer = React.createClass({
   propTypes: {
-    posts: React.PropTypes.object,
+    posts: React.PropTypes.string,
     user: React.PropTypes.object,
     current_user: React.PropTypes.object,
-    commment_authenticity_token: React.PropTypes.string
+    comment_authenticity_token: React.PropTypes.string
   },
-  /*
-    We need to get the posts as JSON.
-    This will be implemented after I have everything working without AJAX
 
-    componentWillMount() {
-      this.fetchPosts();
-      setInterval(this.fetchPosts, 1000);
-    },
+  componentWillMount() {
+    this.fetchPosts();
+    {/* setInterval(this.fetchPosts, 1000); */}
+  },
 
-    fetchPosts() {
-      test = $.getJSON(
-        this.props.postsPath,
-        (data) => this.setState({posts: data})
-      );
-    },
+  fetchPosts() {
+    $.getJSON(
+      this.props.posts,
+      {
+        user_id: this.props.user.id
+      },
+      (data) => this.setState({posts: data})
 
-    getInitialState() {
-      return { posts: [] };
-    },
-  */
+    );
+  },
+
+  getInitialState() {
+    return { posts: [] };
+  },
 
   render: function() {
-    return <Posts posts={this.props.posts}
-                  user={this.props.user}
-                  current_user={this.props.current_user}
-                  comment_authenticity_token={this.props.comment_authenticity_token}
-            />;
+    return (
+      <Posts
+        posts={this.state.posts}
+        posts_path={this.props.posts}
+        user={this.props.user}
+        current_user={this.props.current_user}
+        comment_authenticity_token={this.props.comment_authenticity_token}
+      />
+    );
+
   }
 });
