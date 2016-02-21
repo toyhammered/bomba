@@ -17,13 +17,13 @@ var PostsContainer = React.createClass({
       {
         user_id: this.props.user.id
       },
-      (data) => this.setState({posts: data})
+      (data) => this.setState({posts: data.posts})
 
     );
   },
 
   getInitialState() {
-    return { posts: [] };
+     return { posts: [] };
   },
 
   render: function() {

@@ -6,8 +6,8 @@ var Comments = React.createClass({
   render: function() {
 
     var createComment = (comment) => <Comment key={comment.id}
-                                              comment={comment}
-                                              user={comment.user} />;
+                                              comment={comment} />;
+                                              
     return (
       <div>{this.props.comments.map(createComment)}</div>
     );

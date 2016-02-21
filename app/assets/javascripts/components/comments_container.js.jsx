@@ -12,7 +12,7 @@ var CommentsContainer = React.createClass({
   fetchComments() {
     $.getJSON(
       (this.props.comments + "/" + this.props.postId + "/comments"),
-      (data) => this.setState({comments: data})
+      (data) => this.setState({comments: data.comments})
     );
   },
 

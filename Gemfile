@@ -23,6 +23,7 @@ group :development, :test do
   gem 'shoulda'
 end
 
+gem 'active_model_serializers'
 gem 'active_record_union'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'bootstrap-sass'
