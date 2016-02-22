@@ -16,7 +16,7 @@ var Post = React.createClass({
             <img src={this.props.user.avatar.post_avatar.url} />
 
             <div className="panel-heading panel-heading-inverse">
-              <a href={this.props.user.username} >{this.props.user.username} </a>
+              <a href={"/users/" + this.props.user.username} >{this.props.user.username} </a>
               <a href={"/posts/" + this.props.post.id} >posted this {$.timeago(this.props.post.created_at)} </a>
 
               <div className="dropdown pull-right">

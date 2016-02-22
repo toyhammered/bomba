@@ -46,8 +46,7 @@ class PostsController < ApplicationController
       flash[:error] = "There was an error deleting the post"
     end
 
-    redirect_to :back
-
+    redirect_to "/users/" + current_user.username
   end
 
   def upvote

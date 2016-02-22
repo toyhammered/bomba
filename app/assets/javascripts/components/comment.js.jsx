@@ -5,7 +5,6 @@ var Comment = React.createClass({
   },
 
   render: function() {
-    console.log(this.props.comment);
     return (
       <div className="row">
           <div className="panel panel-inverse panel-comment">
@@ -14,17 +13,21 @@ var Comment = React.createClass({
 
               <div className="panel-comment-text">
                   <p>
-                    <a href={this.props.comment.user.username} >{this.props.comment.user.username} </a>
+                    <a href={"/users/" + this.props.comment.user.username} >{this.props.comment.user.username} </a>
                     {this.props.comment.body}
                   </p>
-                  {/*
 
                   <small>
-                      <%=link_to "<i className='fa fa-heart'></i>".html_safe, like_comment_path(comment), method: :put %>
-                      <%=link_to "<i className='fa fa-bomb'></i>".html_safe, dislike_comment_path(comment), method: :put %>
-                      <%= time_ago_in_words(comment.created_at) %> ago. | <%= comment.get_likes.size %> likes | <%= comment.get_dislikes.size %> bombs
+                    <a rel="nofollow" data-method="put" href={"/comments/" + this.props.comment.id + "/like"} >
+                      <i className="fa fa-heart"></i>
+                    </a>
+                    <a rel="nofollow" data-method="put" href={"/comments/" + this.props.comment.id + "/dislike"} >
+                      <i className="fa fa-bomb"></i>
+                    </a>
+
+                    {$.timeago(this.props.comment.created_at)}. |likes|bombs|
+                     {/* }<%= comment.get_likes.size %> likes | <%= comment.get_dislikes.size %> bombs */}
                   </small>
-                  */}
 
               </div>
             </div>
