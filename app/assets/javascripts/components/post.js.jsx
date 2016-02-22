@@ -29,7 +29,7 @@ var Post = React.createClass({
             </div>
 
             <div className="panel-body panel-body-inverse panel-body-post">
-              <div className="text-area">
+              <div className="text-area post-body">
                 {this.props.post.body}
               </div>
             </div>
@@ -37,6 +37,7 @@ var Post = React.createClass({
 
           <div className="panel-footer panel-footer-inverse panel-footer-post">
             <a rel="nofollow" data-method="put" href={"/posts/" + this.props.post.id + "/like"}><i className="fa fa-2x fa-heart"></i></a>
+            {this.props.post.total_votes}
             <a rel="nofollow" data-method="put" href={"/posts/" + this.props.post.id + "/dislike"}><i className="fa fa-2x fa-bomb"></i></a>
           </div>
 

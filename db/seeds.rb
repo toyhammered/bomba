@@ -110,8 +110,8 @@ posts = Post.all
 create.new_comment(100, users, posts)
 comments = Comment.all
 
-create.new_vote(25, posts, "Post", users)
-create.new_vote(25, comments, "Comment", users)
+create.new_vote(100, posts, "Post", users)
+create.new_vote(100, comments, "Comment", users)
 
 # Seeding Completed
 puts "Seeding Finished."

@@ -25,8 +25,7 @@ var Comment = React.createClass({
                       <i className="fa fa-bomb"></i>
                     </a>
 
-                    {$.timeago(this.props.comment.created_at)}. |likes|bombs|
-                     {/* }<%= comment.get_likes.size %> likes | <%= comment.get_dislikes.size %> bombs */}
+                    {$.timeago(this.props.comment.created_at)}. | {this.props.comment.up_votes} likes | {this.props.comment.down_votes} bombs
                   </small>
 
               </div>
