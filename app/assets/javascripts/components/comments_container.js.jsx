@@ -4,19 +4,19 @@ var CommentsContainer = React.createClass({
     postId: React.PropTypes.number
   },
 
-  componentWillMount() {
+  componentWillMount: function() {
     this.fetchComments();
     {/* setInterval(this.fetchComments, 1000); */}
   },
 
-  fetchComments() {
+  fetchComments: function() {
     $.getJSON(
       (this.props.comments + "/" + this.props.postId + "/comments"),
       (data) => this.setState({comments: data.comments})
     );
   },
 
-  getInitialState() {
+  getInitialState: function() {
     return { comments: [] };
   },
 

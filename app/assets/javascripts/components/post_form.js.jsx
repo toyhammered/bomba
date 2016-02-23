@@ -4,9 +4,14 @@ var PostForm = React.createClass({
     authenticity_token: React.PropTypes.string
   },
 
+  handlePost: function(e) {
+    e.preventDefault();
+    console.log("handling Post");
+  },
+
   render: function() {
     return (
-      <form className="new_post" id="new_post" action="/posts" acceptCharset="UTF-8" method="post">
+      <form className="new_post" id="new_post" action="/posts" acceptCharset="UTF-8" method="post" >
         <input name="utf8" type="hidden" value="&#x2713;" />
         <input type='hidden' name='authenticity_token' value={this.props.authenticity_token} />
         <div className="row">
@@ -18,7 +23,8 @@ var PostForm = React.createClass({
               </div>
             </div>
             <div className="panel-footer panel-footer-inverse panel-footer-form">
-              <input type="submit" name="commit" value="Post" className="btn btn-primary" />
+              {/* <input type="submit" name="commit" value="Post" className="btn btn-primary"  /> */}
+              <button type="button" onClick={this.handlePost} >Send</button>
             </div>
           </div>
         </div>

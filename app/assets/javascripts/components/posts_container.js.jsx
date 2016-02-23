@@ -6,12 +6,12 @@ var PostsContainer = React.createClass({
     comment_authenticity_token: React.PropTypes.string
   },
 
-  componentWillMount() {
+  componentWillMount: function() {
     this.fetchPosts();
     {/* setInterval(this.fetchPosts, 1000); */}
   },
 
-  fetchPosts() {
+  fetchPosts: function() {
     $.getJSON(
       this.props.posts,
       {
@@ -22,7 +22,7 @@ var PostsContainer = React.createClass({
     );
   },
 
-  getInitialState() {
+  getInitialState: function() {
      return { posts: [] };
   },
 
