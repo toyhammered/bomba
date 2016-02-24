@@ -1,5 +1,41 @@
 .navbar.navbar-default.navbar-fixed-top {
   border: none;
+  .navbar-left {
+    #the-basics {
+      margin-top:10px;
+      .tt-menu {
+        background-color: white;
+        display: block;
+      }
+      .typeahead {
+        width: 350px;
+        height: 35px;
+      }
+      .typeahead_wrapper, .empty-message {
+        display: block;
+        width: 340px;
+        height: 30px;
+        margin: 5px;
+        border-bottom: 1px dotted black;
+        .typeahead_photo {
+          float: left;
+          max-width: 25px;
+          max-height: 25px;
+          margin-right: 5px;
+        }
+        .typeahead_lables {
+          float: left;
+          height: 30px;
+          div {
+            font-weight: bold;
+            font-size: 16px;
+            padding-top: 2px;
+          }
+        }
+      }
+    }
+
+  }
   .navbar-right {
     li {
       img {

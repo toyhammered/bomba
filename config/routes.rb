@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       patch 'avatar', to: 'users#avatar'
       get 'about', to: 'users#about'
     end
+    get 'search', on: :collection
   end
 
   resources :pending_friendships, only: [:create, :destroy] do

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require twitter/typeahead.min
 //= require lodash
 //= require timeago
 //= require react
