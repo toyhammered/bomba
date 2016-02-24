@@ -65,7 +65,7 @@ var Post = React.createClass({
               />
 
               <CommentsContainer
-                comments={this.props.posts_path}
+                comments={"/api/v1/posts"}
                 postId = {this.props.post.id}
               />
 

@@ -23,7 +23,7 @@ var PostForm = React.createClass({
               </div>
             </div>
             <div className="panel-footer panel-footer-inverse panel-footer-form">
-              {/* <input type="submit" name="commit" value="Post" className="btn btn-primary"  /> */}
+              <input type="submit" name="commit" value="Post" className="btn btn-primary"  />
               <button type="button" onClick={this.handlePost} >Send</button>
             </div>
           </div>

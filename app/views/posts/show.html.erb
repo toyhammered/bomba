@@ -1,12 +1,11 @@
 <div class="container">
   <%# = render partial: 'posts/post', locals: {post: @post, user: @user} %>
-  <%= react_component("Post",
+
+  <%= react_component("PostsContainer",
     {
-      key: @post.id,
-      post: @post,
+      posts: api_v1_post_path(@post),
       user: @user,
       current_user: current_user,
-      posts_path: api_v1_posts_path,
       comment_authenticity_token: form_authenticity_token
     }) %>
 </div>

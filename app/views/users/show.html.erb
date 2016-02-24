@@ -12,6 +12,7 @@
           <%#= render partial: 'posts/form', locals: {user: @user} %>
         <% end %>
         <%= react_component("PostsContainer",
+
             {
               posts: api_v1_posts_path,
               user: @user,
