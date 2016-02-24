@@ -17,22 +17,14 @@ $(document).on('page:change', function() {
         name: 'usernames',
         displayKey: 'usernames',
         source: function(query, syncResults, asyncResults) {
-          objects = [];
-          map = {};
 
           $.ajax({
             type: "GET",
-            url: "/users/search",
+            url: "/api/v1/users",
             dataType: "json",
             data: {query: query}
           }).done(function(data){
-            $.each(data, function(i, data1){
-              $.each(data1, function(i, object){
-                map[object.email] = object;
-                objects.push({id: object.id, email: object.email, username: object.username, avatar: object.avatar})
-              }); // second each
-            }); // first each
-            asyncResults(objects);
+            asyncResults(data.users);
           });
         },
         templates: {

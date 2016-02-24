@@ -6,10 +6,19 @@ var PostForm = React.createClass({
 
   handlePost: function(e) {
     e.preventDefault();
-    console.log("handling Post");
+    body = $("#post_body").val();
+    data = {"post": {"body": body}};
+    $.ajax({
+      type: "POST",
+      url: "/posts",
+      data: data,
+    }).done(function(){
+      console.log("Completed sending post");
+    });
   },
 
   render: function() {
+    var user = this.props.user;
     return (
       <form className="new_post" id="new_post" action="/posts" acceptCharset="UTF-8" method="post" >
         <input name="utf8" type="hidden" value="&#x2713;" />

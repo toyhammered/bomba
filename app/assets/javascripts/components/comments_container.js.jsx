@@ -6,7 +6,6 @@ var CommentsContainer = React.createClass({
 
   componentWillMount: function() {
     this.fetchComments();
-    {/* setInterval(this.fetchComments, 1000); */}
   },
 
   fetchComments: function() {
