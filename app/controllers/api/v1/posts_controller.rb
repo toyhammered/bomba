@@ -8,7 +8,6 @@ class Api::V1::PostsController < Api::V1::ApiController
 
   def show
     posts = Post.where(id: params[:id])
-    puts posts.inspect
     render json: posts
   end
 end

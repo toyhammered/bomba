@@ -28,12 +28,10 @@ $(document).on('page:change', function() {
           }).done(function(data){
             $.each(data, function(i, data1){
               $.each(data1, function(i, object){
-                console.log("Map: ", map);
                 map[object.email] = object;
                 objects.push({id: object.id, email: object.email, username: object.username, avatar: object.avatar})
               }); // second each
             }); // first each
-            console.log("Results: ", objects);
             asyncResults(objects);
           });
         },
@@ -44,8 +42,6 @@ $(document).on('page:change', function() {
             '</div>'
           ].join('\n'),
           suggestion: function(user) {
-            console.log("******");
-            console.log(user);
             var itm = ''
             + "<a href='/users/" + user.username + "'>"
               + "<div class='typeahead_wrapper'>"
