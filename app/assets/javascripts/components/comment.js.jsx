@@ -4,6 +4,17 @@ var Comment = React.createClass({
     comment: React.PropTypes.object
   },
 
+  handleVote: function(vote_type) {
+    $.ajax({
+      type: "POST",
+      url: "/comments/" + this.props.comment.id + "/" + vote_type,
+      headers: {"X-HTTP-Method-Override": "PUT"},
+      data: {"id": this.props.comment.id},
+    }).done(function(){
+      console.log("Completed updating vote on comment");
+    });
+  },
+
   render: function() {
     return (
       <div className="row">
@@ -18,12 +29,8 @@ var Comment = React.createClass({
                   </p>
 
                   <small>
-                    <a rel="nofollow" data-method="put" href={"/comments/" + this.props.comment.id + "/like"} >
-                      <i className="fa fa-heart"></i>
-                    </a>
-                    <a rel="nofollow" data-method="put" href={"/comments/" + this.props.comment.id + "/dislike"} >
-                      <i className="fa fa-bomb"></i>
-                    </a>
+                    <a onClick={this.handleVote.bind(this, "like")}><i className="fa fa-heart"></i></a>
+                    <a onClick={this.handleVote.bind(this, "dislike")}><i className="fa fa-bomb"></i></a>
 
                     {$.timeago(this.props.comment.created_at)}. | {this.props.comment.up_votes} likes | {this.props.comment.down_votes} bombs
                   </small>

@@ -9,17 +9,14 @@
             { user: @user,
               authenticity_token: form_authenticity_token
             }) %>
-          <%#= render partial: 'posts/form', locals: {user: @user} %>
         <% end %>
         <%= react_component("PostsContainer",
-
             {
               posts: api_v1_posts_path,
               user: @user,
               current_user: current_user,
               comment_authenticity_token: form_authenticity_token
             }) %>
-
       </div>
       <div class="col-md-3 friends">
         <%= render partial: 'users/friends' %>

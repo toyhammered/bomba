@@ -4,8 +4,7 @@ var PostForm = React.createClass({
     authenticity_token: React.PropTypes.string
   },
 
-  handlePost: function(e) {
-    e.preventDefault();
+  handlePost: function() {
     body = $("#post_body").val();
     data = {"post": {"body": body}};
     $.ajax({
@@ -15,6 +14,7 @@ var PostForm = React.createClass({
     }).done(function(){
       console.log("Completed sending post");
     });
+    $("#post_body").val('');
   },
 
   render: function() {

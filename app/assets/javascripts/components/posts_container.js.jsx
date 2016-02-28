@@ -8,7 +8,7 @@ var PostsContainer = React.createClass({
 
   componentWillMount: function() {
     this.fetchPosts();
-    setInterval(this.fetchPosts, 20000);
+    {/* setInterval(this.fetchPosts, 20000); */}
   },
 
   fetchPosts: function() {

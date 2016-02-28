@@ -8,6 +8,17 @@ var Post = React.createClass({
     comment_authenticity_token: React.PropTypes.string
   },
 
+  handleVote: function(vote_type) {
+    $.ajax({
+      type: "POST",
+      url: "/posts/" + this.props.post.id + "/" + vote_type,
+      headers: {"X-HTTP-Method-Override": "PUT"},
+      data: {"id": this.props.post.id},
+    }).done(function(){
+      console.log("Completed updating vote on post");
+    });
+  },
+
   render: function() {
     return (
       <div className="row">
@@ -36,9 +47,9 @@ var Post = React.createClass({
           </div>
 
           <div className="panel-footer panel-footer-inverse panel-footer-post">
-            <a rel="nofollow" data-method="put" href={"/posts/" + this.props.post.id + "/like"}><i className="fa fa-2x fa-heart"></i></a>
+            <a onClick={this.handleVote.bind(this, "like")}><i className="fa fa-2x fa-heart"></i></a>
             {this.props.post.total_votes}
-            <a rel="nofollow" data-method="put" href={"/posts/" + this.props.post.id + "/dislike"}><i className="fa fa-2x fa-bomb"></i></a>
+            <a onClick={this.handleVote.bind(this, "dislike")}><i className="fa fa-2x fa-bomb"></i></a>
           </div>
 
           {/*

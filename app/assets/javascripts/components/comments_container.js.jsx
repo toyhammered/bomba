@@ -8,6 +8,10 @@ var CommentsContainer = React.createClass({
     this.fetchComments();
   },
 
+  componentWillReceiveProps: function() {
+    this.fetchComments();
+  },
+
   fetchComments: function() {
     $.getJSON(
       (this.props.comments + "/" + this.props.postId + "/comments"),
