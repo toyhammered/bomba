@@ -1,17 +1,31 @@
-var PostsContainer = React.createClass({
+class PostsContainer extends React.Component {
   propTypes: {
     posts: React.PropTypes.string,
     user: React.PropTypes.object,
     current_user: React.PropTypes.object,
     comment_authenticity_token: React.PropTypes.string
-  },
+  }
 
-  componentWillMount: function() {
+  constructor() {
+    super();
+    this.state = PostStore.getState();
+
+    this.handleViewChange = (state) => {
+      this.setState(state);
+    }
+  }
+
+  componentWillMount() {
+    PostStore.listen(this.handleViewChange);
     this.fetchPosts();
     {/* setInterval(this.fetchPosts, 20000); */}
-  },
+  }
 
-  fetchPosts: function() {
+  componentWillUnmount() {
+    PostStore.unlisten(this.handleViewChange);
+  }
+
+  fetchPosts() {
     $.getJSON(
       this.props.posts,
       {
@@ -20,13 +34,9 @@ var PostsContainer = React.createClass({
       (data) => this.setState({posts: data.posts})
 
     );
-  },
+  }
 
-  getInitialState: function() {
-     return { posts: [] };
-  },
-
-  render: function() {
+  render() {
     return (
       <Posts
         posts={this.state.posts}
@@ -38,4 +48,4 @@ var PostsContainer = React.createClass({
     );
 
   }
-});
+}

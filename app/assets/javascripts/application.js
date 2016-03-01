@@ -14,11 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require twitter/typeahead.min
-//= require lodash
 //= require timeago
 //= require react
 //= require react_ujs
-//= require components
 
 //= require bootstrap-sprockets
 //= require_tree .

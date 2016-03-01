@@ -1,10 +1,10 @@
-var PostForm = React.createClass({
+class PostForm extends React.Component {
   propTypes: {
     user: React.PropTypes.object,
     authenticity_token: React.PropTypes.string
-  },
+  }
 
-  handlePost: function() {
+  handlePost() {
     body = $("#post_body").val();
     data = {"post": {"body": body}};
     $.ajax({
@@ -12,12 +12,13 @@ var PostForm = React.createClass({
       url: "/posts",
       data: data,
     }).done(function(){
+
       console.log("Completed sending post");
     });
     $("#post_body").val('');
-  },
+  }
 
-  render: function() {
+  render() {
     var user = this.props.user;
     return (
       <form className="new_post" id="new_post" action="/posts" acceptCharset="UTF-8" method="post" >
@@ -40,4 +41,4 @@ var PostForm = React.createClass({
       </form>
     );
   }
-});
+};
