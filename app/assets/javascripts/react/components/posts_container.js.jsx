@@ -1,37 +1,48 @@
+
 class PostsContainer extends React.Component {
+
   propTypes: {
-    posts: React.PropTypes.string,
     user: React.PropTypes.object,
     current_user: React.PropTypes.object,
     comment_authenticity_token: React.PropTypes.string
   }
 
-  constructor() {
+  constructor(props) {
     super();
-    this.state = PostStore.getState();
 
-    this.handleViewChange = (state) => {
-      this.setState(state);
+    this.state = {
+      user: props.user,
+      current_user: props.current_user,
+      posts: PostStore.getState().posts
     }
+    this.fetchPosts();
+    // setInterval(this.fetchPosts, 10000);
   }
 
   componentWillMount() {
     PostStore.listen(this.handleViewChange);
-    this.fetchPosts();
-    {/* setInterval(this.fetchPosts, 20000); */}
   }
 
   componentWillUnmount() {
     PostStore.unlisten(this.handleViewChange);
   }
 
+  handleViewChange(state) {
+    console.log("handleViewChange() called");
+    this.setState(state);
+  }
+
   fetchPosts() {
+    console.log("FetchPosts()", this.state);
+
     $.getJSON(
-      this.props.posts,
+      "/api/v1/posts",
       {
-        user_id: this.props.user.id
+        user_id: this.state.user.id
       },
-      (data) => this.setState({posts: data.posts})
+      (data) => this.setState({
+                                posts: data.posts
+                              })
 
     );
   }
@@ -40,9 +51,9 @@ class PostsContainer extends React.Component {
     return (
       <Posts
         posts={this.state.posts}
-        posts_path={this.props.posts}
-        user={this.props.user}
-        current_user={this.props.current_user}
+        posts_path="/api/v1/posts"
+        user={this.state.user}
+        current_user={this.state.current_user}
         comment_authenticity_token={this.props.comment_authenticity_token}
       />
     );

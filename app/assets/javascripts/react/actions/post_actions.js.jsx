@@ -1,7 +1,7 @@
 (() => {
   class PostActions {
     updatePosts(posts) {
-      this.dispatch(posts)
+      this.dispatch(posts);
     }
   }
 

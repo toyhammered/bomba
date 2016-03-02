@@ -12,7 +12,6 @@ class PostForm extends React.Component {
       url: "/posts",
       data: data,
     }).done(function(){
-
       console.log("Completed sending post");
     });
     $("#post_body").val('');
