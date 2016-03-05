@@ -1,7 +1,9 @@
 (() => {
   class PostActions {
-    updatePosts(posts) {
-      this.dispatch(posts);
+    constructor() {
+      this.generateActions(
+        'initData'
+      )
     }
   }
 

@@ -20,6 +20,7 @@ var Posts = React.createClass({
                                      posts_path={posts_path}
                                      comment_authenticity_token={comment_authenticity_token} />;
 
+
     return (
         <div>{this.props.posts.map(createPost)}</div>
     );

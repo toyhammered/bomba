@@ -13,4 +13,20 @@ class Post < ActiveRecord::Base
   validates :body, presence: true
   validates :user, presence: true
 
+  def up_votes
+    get_likes.size
+  end
+
+  def down_votes
+    get_dislikes.size
+  end
+
+  def total_votes
+    (up_votes - down_votes)
+  end
+
+  def voted_for(current_user)
+    self.votes.find_by(voter: current_user.id)
+  end
+
 end

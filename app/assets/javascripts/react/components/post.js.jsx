@@ -52,21 +52,6 @@ var Post = React.createClass({
             <a onClick={this.handleVote.bind(this, "dislike")}><i className="fa fa-2x fa-bomb"></i></a>
           </div>
 
-          {/*
-            <%= link_to "<i class='fa fa-2x fa-heart'></i>".html_safe, like_post_path(post), method: :put %>
-            <%= post.get_likes.size - post.get_dislikes.size %>
-            <%= link_to "<i class='fa fa-2x fa-bomb'></i>".html_safe, dislike_post_path(post), method: :put %>
-          <div class="panel-footer panel-footer-inverse panel-footer-votes">
-            <% if post.get_likes.size != 0 %>
-              <p>Your post has been Liked by <%= post.get_likes.size %> people</p>
-            <% end %>
-
-            <% if post.get_dislikes.size != 0 %>
-              <p>Your post has been Bombed by <%= post.get_dislikes.size %> people</p>
-            <% end %>
-          </div>
-          */}
-
           <div className="panel-group panel-group-comments">
             <div className="panel-heading panel-heading-inverse">
               <CommentForm
