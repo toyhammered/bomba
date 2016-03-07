@@ -14,7 +14,6 @@
     }
 
     onInitData(props) {
-      console.log("onInitData() called");
       this.user = props.user;
       this.current_user = props.current_user;
       this.page = props.page;
@@ -22,6 +21,24 @@
 
     getPosts() {
       this.getState().posts
+    }
+
+    onSubmitPost(data) {
+      $.ajax({
+        type: "POST",
+        url: "/api/v1/posts",
+        data: data,
+      })
+      .done(function(response){
+        console.log("Completed sending post");
+        console.log(response);
+        this.posts.push(response);
+        this.emitChange();
+      })
+      .error(function(response){
+        console.log('error');
+        console.log(response);
+      });
     }
 
   }

@@ -7,13 +7,7 @@ class PostForm extends React.Component {
   handlePost() {
     body = $("#post_body").val();
     data = {"post": {"body": body}};
-    $.ajax({
-      type: "POST",
-      url: "/posts",
-      data: data,
-    }).done(function(){
-      console.log("Completed sending post");
-    });
+    PostActions.submitPost(data);
     $("#post_body").val('');
   }
 

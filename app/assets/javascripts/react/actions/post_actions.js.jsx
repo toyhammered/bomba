@@ -2,7 +2,8 @@
   class PostActions {
     constructor() {
       this.generateActions(
-        'initData'
+        'initData',
+        'submitPost'
       )
     }
   }

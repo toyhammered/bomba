@@ -6,19 +6,6 @@ class PostsController < ApplicationController
     @user = User.find(@post.user_id)
   end
 
-  def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
-
-    if @post.save
-      track_activity(@post)
-      flash[:notice] = "Post was created"
-    else
-      flash[:error] = "Error creating Post. Please try again."
-    end
-    redirect_to :back
-  end
-
   def update
     @post = Post.find(params[:id])
     @post.assign_attributes(post_params)

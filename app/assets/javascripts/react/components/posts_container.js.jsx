@@ -31,18 +31,8 @@ class PostsContainer extends React.Component {
     this.setState(state);
   }
 
-  setPage() {
-    console.log("SetPage() called", this.state);
-    if (this.state && this.state.page) {
-      return this.state.page;
-    } else {
-      return "";
-    }
-  }
-
   fetchPosts() {
-    console.log("*****fetchPosts*****");
-    console.log(this.props);
+
     $.getJSON(
       "/api/v1/posts",
       {

@@ -1,5 +1,5 @@
-class Api::V1::ApiController < ActionController::Base
-  skip_before_action :verify_authenticity_token
+class Api::V1::ApiController < ApplicationController
+  # skip_before_action :verify_authenticity_token
 
   private
 
