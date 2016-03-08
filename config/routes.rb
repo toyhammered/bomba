@@ -18,12 +18,8 @@ Rails.application.routes.draw do
   end
   resources :friendships, only: [:destroy]
 
-  resources :posts, only: [:create, :destroy, :update, :show] do
+  resources :posts, only: [:show] do
     resources :comments, only: [:create, :destroy]
-    member do
-      put "like", to: "posts#upvote"
-      put "dislike", to: "posts#downvote"
-    end
   end
 
   resources :comments, only: [] do
@@ -38,7 +34,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :users, only: [:index]
-      resources :posts, only: [:index, :show, :create, :destroy] do
+      resources :posts do
+        member do
+          put "like", to: "posts#upvote"
+          put "dislike", to: "posts#downvote"
+        end
         resources :comments, only: [:index, :show]
       end
     end

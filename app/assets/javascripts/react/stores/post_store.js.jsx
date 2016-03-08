@@ -33,7 +33,7 @@
         console.log("Completed sending post");
         console.log(response);
         this.posts.push(response);
-        this.emitChange();
+        // this.emitChange();
       })
       .error(function(response){
         console.log('error');

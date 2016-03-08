@@ -11,7 +11,7 @@ var Post = React.createClass({
   handleVote: function(vote_type) {
     $.ajax({
       type: "POST",
-      url: "/posts/" + this.props.post.id + "/" + vote_type,
+      url: "/api/v1/posts/" + this.props.post.id + "/" + vote_type,
       headers: {"X-HTTP-Method-Override": "PUT"},
       data: {"id": this.props.post.id},
     }).done(function(){
@@ -34,7 +34,7 @@ var Post = React.createClass({
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-2x fa-cog"></i></a>
                 <ul className="dropdown-menu">
                   {/* }<li> link_to "Edit Post", "#", "data-target": "#myModal_#{post.id}", "data-toggle": "modal" </li> */}
-                  <li><a className="navbar-link" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href={"/posts/" + this.props.post.id}>Delete Post</a></li>
+                  <li><a className="navbar-link" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href={"/api/v1/posts/" + this.props.post.id}>Delete Post</a></li>
                 </ul>
               </div>
             </div>

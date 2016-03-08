@@ -4,7 +4,8 @@ class PostsContainer extends React.Component {
     user: React.PropTypes.object,
     current_user: React.PropTypes.object,
     comment_authenticity_token: React.PropTypes.string,
-    page: React.PropTypes.string
+    page: React.PropTypes.string,
+    post_path: React.PropTypes.string
   }
 
   constructor(props) {
@@ -34,15 +35,15 @@ class PostsContainer extends React.Component {
   fetchPosts() {
 
     $.getJSON(
-      "/api/v1/posts",
+      this.props.post_path,
       {
         user_id: this.props.user.id,
         page: this.props.page
       },
       (data) => {
         // this is not right.
-        combineData = this.state.posts.concat(data.posts)
-        this.setState({posts: combineData})
+        // combineData = this.state.posts.concat(data.posts)
+        this.setState({posts: data.posts})
       });
   }
 
