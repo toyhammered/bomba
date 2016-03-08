@@ -7,7 +7,7 @@ var Comment = React.createClass({
   handleVote: function(vote_type) {
     $.ajax({
       type: "POST",
-      url: "/comments/" + this.props.comment.id + "/" + vote_type,
+      url: "/api/v1/comments/" + this.props.comment.id + "/" + vote_type,
       headers: {"X-HTTP-Method-Override": "PUT"},
       data: {"id": this.props.comment.id},
     }).done(function(){

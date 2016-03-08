@@ -5,7 +5,6 @@ class Api::V1::PostsController < Api::V1::ApiController
     page = params[:page].present? ? params[:page] : 1
     # posts = Post.where(user_id: params[:user_id]).page(page).per(3)
     posts = Post.where(user_id: params[:user_id])
-
     render json: posts, current_user: current_user
   end
 
@@ -30,7 +29,6 @@ class Api::V1::PostsController < Api::V1::ApiController
   def update
     post = Post.find(params[:id])
     post.assign_attributes(post_params)
-
     authorize post
 
     if post.save
@@ -39,9 +37,7 @@ class Api::V1::PostsController < Api::V1::ApiController
     else
       flash[:error] = "There was an error updating the post. Please try again."
     end
-
     redirect_to :back
-
   end
 
   def destroy
@@ -53,7 +49,6 @@ class Api::V1::PostsController < Api::V1::ApiController
     else
       flash[:error] = "There was an error deleting the post"
     end
-
     redirect_to "/users/" + current_user.username
   end
 

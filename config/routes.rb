@@ -16,20 +16,12 @@ Rails.application.routes.draw do
       post 'accept'
     end
   end
+  
   resources :friendships, only: [:destroy]
-
-  resources :posts, only: [:show] do
-    resources :comments, only: [:create, :destroy]
-  end
-
-  resources :comments, only: [] do
-    member do
-      put "like", to: "comments#upvote"
-      put "dislike", to: "comments#downvote"
-    end
-  end
-
+  resources :posts, only: [:show]
   resources :activities, only: [:index]
+
+
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -39,7 +31,13 @@ Rails.application.routes.draw do
           put "like", to: "posts#upvote"
           put "dislike", to: "posts#downvote"
         end
-        resources :comments, only: [:index, :show]
+        resources :comments, only: [:index, :create, :destroy]
+      end
+      resources :comments, only: [] do
+        member do
+          put "like", to: "comments#upvote"
+          put "dislike", to: "comments#downvote"
+        end
       end
     end
   end
