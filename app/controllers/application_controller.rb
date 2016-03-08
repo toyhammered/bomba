@@ -6,12 +6,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def track_activity(trackable, action = params[:action])
-    Activity.track(current_user, trackable, action)
-  rescue
-    logger.debug("*****DEBUG*****")
-    logger.debug("ApplicationController#track_activity:9, incorrect option passed")
-    logger.debug("Trackable: #{trackable.inspect}, Action: #{action}")
-  end # end track_activity
+
 
 end # end ApplicationController

@@ -6,10 +6,4 @@ class PostsController < ApplicationController
     @user = User.find(@post.user_id)
   end
 
-  private
-
-  def post_params
-    params.require(:post).permit(:body)
-  end
-
 end
