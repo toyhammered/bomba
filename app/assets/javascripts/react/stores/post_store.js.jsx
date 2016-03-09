@@ -1,26 +1,29 @@
 (() => {
   class PostStore {
     constructor() {
-      console.log("PostStore getState() called");
-
       this.bindActions(PostActions)
       this.posts = [];
-
-      this.exportPublicMethods(
-        {
-        getPosts: this.getPosts
-        }
-      )
     }
 
     onInitData(props) {
       this.user = props.user;
       this.current_user = props.current_user;
       this.page = props.page;
+      this.post_path = props.post_path;
+      this.fetchPosts();
     }
 
-    getPosts() {
-      this.getState().posts
+    fetchPosts() {
+      console.log("fetchPosts() called");
+      $.getJSON(
+        this.post_path,
+        {
+          user_id: this.user.id,
+          page: this.page
+        },
+        (data) => {
+          this.setState({posts: data.posts})
+        });
     }
 
     onSubmitPost(data) {
@@ -29,14 +32,12 @@
         url: "/api/v1/posts",
         data: data,
       })
-      .done(function(response){
-        console.log("Completed sending post");
-        console.log(response);
-        this.posts.push(response);
-        // this.emitChange();
+      .done((response) => {
+        this.posts.unshift(response.post);
+        this.emitChange();
       })
-      .error(function(response){
-        console.log('error');
+      .error((response) => {
+        console.log('post error');
         console.log(response);
       });
     }

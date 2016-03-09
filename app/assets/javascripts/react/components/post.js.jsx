@@ -28,7 +28,7 @@ var Post = React.createClass({
 
             <div className="panel-heading panel-heading-inverse">
               <a href={"/users/" + this.props.user.username} >{this.props.user.username} </a>
-              <a href={"/posts/" + this.props.post.id} >posted this {$.timeago(this.props.post.created_at)} </a>
+              <a href={"/posts/" + this.props.post.id} >posted this {/*$.timeago(this.props.post.created_at)*/} </a>
 
               <div className="dropdown pull-right">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-2x fa-cog"></i></a>
@@ -59,9 +59,8 @@ var Post = React.createClass({
                 current_user={this.props.current_user}
                 authenticity_token={this.props.comment_authenticity_token}
               />
-
               <CommentsContainer
-                comments={"/api/v1/posts"}
+                comments_path = {"/api/v1/posts"}
                 postId = {this.props.post.id}
               />
 

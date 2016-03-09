@@ -5,6 +5,7 @@ class Api::V1::PostsController < Api::V1::ApiController
     page = params[:page].present? ? params[:page] : 1
     # posts = Post.where(user_id: params[:user_id]).page(page).per(3)
     posts = Post.where(user_id: params[:user_id])
+
     render json: posts, current_user: current_user
   end
 
@@ -22,7 +23,7 @@ class Api::V1::PostsController < Api::V1::ApiController
       track_activity(post)
       render json: post, current_user: current_user
     else
-      render json: post.errors.to_json
+      render json: post.errors
     end
   end
 

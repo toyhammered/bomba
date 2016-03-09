@@ -12,9 +12,8 @@ class PostsContainer extends React.Component {
     super(props);
 
     // Bind callback methods to make `this` the correct context.
-    this.fetchPosts = this.fetchPosts.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.fetchPosts();
+    // this.fetchPosts();
     // setInterval(this.fetchPosts, 10000);
   }
 
@@ -32,23 +31,8 @@ class PostsContainer extends React.Component {
     this.setState(state);
   }
 
-  fetchPosts() {
-
-    $.getJSON(
-      this.props.post_path,
-      {
-        user_id: this.props.user.id,
-        page: this.props.page
-      },
-      (data) => {
-        // this is not right.
-        // combineData = this.state.posts.concat(data.posts)
-        this.setState({posts: data.posts})
-      });
-  }
-
   render() {
-    console.log("*****state*****");
+    console.log("*****post state*****");
     console.log(this.state);
     return (
       <Posts

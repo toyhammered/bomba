@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require twitter/typeahead.min
-//= require timeago
 //= require react
 //= require react_ujs
 

@@ -1,33 +1,37 @@
-var CommentsContainer = React.createClass({
+class CommentsContainer extends React.Component {
   propTypes: {
-    comments: React.PropTypes.string,
+    comments_path: React.PropTypes.string,
     postId: React.PropTypes.number
-  },
+  }
 
-  componentWillMount: function() {
-    this.fetchComments();
-  },
+  constructor(props) {
+    super(props)
+    this.onChange = this.onChange.bind(this);
+  }
 
-  componentWillReceiveProps: function() {
-    this.fetchComments();
-  },
+  componentWillMount() {
+    CommentStore.listen(this.onChange)
+    CommentActions.initData(this.props)
+  }
 
-  fetchComments: function() {
-    $.getJSON(
-      (this.props.comments + "/" + this.props.postId + "/comments"),
-      (data) => this.setState({comments: data.comments})
-    );
-  },
+  componentWillUnmount() {
+    CommentStore.unlisten(this.onChange)
+  }
 
-  getInitialState: function() {
-    return { comments: [] };
-  },
+  componentWillReceiveProps() {
+  }
 
-  render: function() {
+  onChange(state) {
+    this.setState(state);
+  }
+
+  render() {
+
     return (
       <Comments
         comments={this.state.comments}
       />
     );
   }
-});
+
+}

@@ -1,26 +1,18 @@
-var CommentForm = React.createClass({
+class CommentForm extends React.Component {
   propTypes: {
     postId: React.PropTypes.number,
     current_user: React.PropTypes.object,
     authenticity_token: React.PropTypes.string
-  },
+  }
 
-  handleComment: function() {
-      body = $("#comment_body_" + this.props.postId).val();
-      data = {"comment": {"body": body}, "post_id": this.props.postId};
-      $.ajax({
-        type: "POST",
-        url: "/api/v1/posts/" + this.props.postId + "/comments",
-        data: data,
-      }).done(function(){
-        console.log("Completed sending comment");
+  handleComment() {
+    body = $("#comment_body_" + this.props.postId).val();
+    data = {"comment": {"body": body}, "post_id": this.props.postId};
+    PostActions.submitPost(data);
+    $("#comment_body_" + this.props.postId).val('');
+  }
 
-      });
-      $("#comment_body_" + this.props.postId).val('');
-
-  },
-
-  render: function() {
+  render() {
 
     return (
         <form className="new_comment" id={"new_comment_" + this.props.postId} action={"/api/v1/posts/" + this.props.postId + "/comments"} acceptCharset="UTF-8" method="post">
@@ -44,4 +36,4 @@ var CommentForm = React.createClass({
         </form>
     );
   }
-});
+}

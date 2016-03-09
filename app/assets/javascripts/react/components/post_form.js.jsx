@@ -26,8 +26,7 @@ class PostForm extends React.Component {
               </div>
             </div>
             <div className="panel-footer panel-footer-inverse panel-footer-form">
-              <input type="submit" name="commit" value="Post" className="btn btn-primary"  />
-              <button type="button" onClick={this.handlePost} >Send</button>
+              <input type="button" onClick={this.handlePost} className="btn btn-primary" value="Post" />
             </div>
           </div>
         </div>
