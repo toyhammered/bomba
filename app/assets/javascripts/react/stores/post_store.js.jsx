@@ -6,17 +6,19 @@
     }
 
     onInitData(props) {
+      // The user needs to be constantly updated (for activity feed)
       this.user = props.user;
       this.current_user = props.current_user;
       this.page = props.page;
-      this.post_path = props.post_path;
       this.fetchPosts();
     }
 
     fetchPosts() {
-      console.log("fetchPosts() called");
+      console.log("*******")
+      console.log(this.user);
+      console.log("*******")
       $.getJSON(
-        this.post_path,
+        "/api/v1/posts",
         {
           user_id: this.user.id,
           page: this.page

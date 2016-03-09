@@ -5,7 +5,6 @@ class PostsContainer extends React.Component {
     current_user: React.PropTypes.object,
     comment_authenticity_token: React.PropTypes.string,
     page: React.PropTypes.string,
-    post_path: React.PropTypes.string
   }
 
   constructor(props) {
@@ -27,7 +26,6 @@ class PostsContainer extends React.Component {
   }
 
   onChange(state) {
-    console.log(state);
     this.setState(state);
   }
 
@@ -37,8 +35,6 @@ class PostsContainer extends React.Component {
     return (
       <Posts
         posts={this.state.posts}
-        posts_path="/api/v1/posts"
-        user={this.state.user}
         current_user={this.state.current_user}
         comment_authenticity_token={this.props.comment_authenticity_token}
       />

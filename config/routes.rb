@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       post 'accept'
     end
   end
-  
+
   resources :friendships, only: [:destroy]
   resources :posts, only: [:show]
   resources :activities, only: [:index]
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
           put "like", to: "posts#upvote"
           put "dislike", to: "posts#downvote"
         end
-        resources :comments, only: [:index, :create, :destroy]
+        resources :comments, only: [:create, :destroy]
       end
       resources :comments, only: [] do
         member do

@@ -2,9 +2,7 @@ var Post = React.createClass({
   propTypes: {
     key: React.PropTypes.number,
     post: React.PropTypes.object,
-    user: React.PropTypes.object,
     current_user: React.PropTypes.object,
-    posts_path: React.PropTypes.string,
     comment_authenticity_token: React.PropTypes.string
   },
 
@@ -24,10 +22,10 @@ var Post = React.createClass({
       <div className="row">
         <div className="col-md-offset-1">
           <div className="panel panel-inverse panel-post">
-            <img src={this.props.user.avatar.post_avatar.url} />
+            <img src={this.props.post.user.avatar.post_avatar.url} />
 
             <div className="panel-heading panel-heading-inverse">
-              <a href={"/users/" + this.props.user.username} >{this.props.user.username} </a>
+              <a href={"/users/" + this.props.post.user.username} >{this.props.post.user.username} </a>
               <a href={"/posts/" + this.props.post.id} >posted this {/*$.timeago(this.props.post.created_at)*/} </a>
 
               <div className="dropdown pull-right">
@@ -55,13 +53,12 @@ var Post = React.createClass({
           <div className="panel-group panel-group-comments">
             <div className="panel-heading panel-heading-inverse">
               <CommentForm
-                postId={this.props.post.id}
+                post={this.props.post}
                 current_user={this.props.current_user}
                 authenticity_token={this.props.comment_authenticity_token}
               />
-              <CommentsContainer
-                comments_path = {"/api/v1/posts"}
-                postId = {this.props.post.id}
+              <Comments
+                post = {this.props.post}
               />
 
               {/*

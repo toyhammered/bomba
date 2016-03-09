@@ -6,16 +6,22 @@
         { user: current_user,
           authenticity_token: form_authenticity_token
         }) %>
+
+
       <% @active_friends.each do |friend| %>
         <%= react_component("PostsContainer",
             {
-              posts: api_v1_posts_path,
+              post_path: api_v1_posts_path,
               user: friend,
               current_user: current_user,
+              page: @page,
               comment_authenticity_token: form_authenticity_token
             }) %>
       <% end %>
     </div>
+
+
+
 
     <div class="col-md-3" id="activity">
       <div class="row">
