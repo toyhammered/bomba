@@ -52,4 +52,5 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-alt'
+  gem 'rails-assets-momentjs'
 end

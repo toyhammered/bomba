@@ -44,6 +44,23 @@
       });
     }
 
+    onSubmitComment(data) {
+
+      $.ajax({
+        type: "POST",
+        url: "/api/v1/posts/" + data.post_id + "/comments",
+        data: data,
+      })
+      .done((response) => {
+        // this.posts.unshift(response.post);
+        this.emitChange();
+      })
+      .error((response) => {
+        console.log('post error');
+        console.log(response);
+      });
+    }
+
   }
 
   this.PostStore = alt.createStore(PostStore, 'PostStore');

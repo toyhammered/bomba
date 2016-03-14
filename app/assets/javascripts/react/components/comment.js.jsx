@@ -32,7 +32,7 @@ var Comment = React.createClass({
                     <a onClick={this.handleVote.bind(this, "like")}><i className="fa fa-heart"></i></a>
                     <a onClick={this.handleVote.bind(this, "dislike")}><i className="fa fa-bomb"></i></a>
 
-                    {/*$.timeago(this.props.comment.created_at)*/}. | {this.props.comment.up_votes} likes | {this.props.comment.down_votes} bombs
+                    {moment(this.props.comment.created_at).fromNow()} | {this.props.comment.up_votes} likes | {this.props.comment.down_votes} bombs
                   </small>
 
               </div>

@@ -281,6 +281,7 @@ GEM
       railties (= 4.2.5)
       sprockets-rails
     rails-assets-alt (0.18.2)
+    rails-assets-momentjs (2.12.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -434,6 +435,7 @@ DEPENDENCIES
   pundit
   rails (= 4.2.5)
   rails-assets-alt!
+  rails-assets-momentjs!
   rails_12factor
   rails_db
   react-rails (~> 1.6.0)

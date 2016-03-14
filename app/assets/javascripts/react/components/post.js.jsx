@@ -26,7 +26,7 @@ var Post = React.createClass({
 
             <div className="panel-heading panel-heading-inverse">
               <a href={"/users/" + this.props.post.user.username} >{this.props.post.user.username} </a>
-              <a href={"/posts/" + this.props.post.id} >posted this {/*$.timeago(this.props.post.created_at)*/} </a>
+              <a href={"/posts/" + this.props.post.id} >posted this {moment(this.props.post.created_at).fromNow()} </a>
 
               <div className="dropdown pull-right">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-2x fa-cog"></i></a>

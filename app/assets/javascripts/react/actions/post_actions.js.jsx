@@ -3,8 +3,10 @@
     constructor() {
       this.generateActions(
         'initData',
-        'submitPost'
+        'submitPost',
+        'submitComment'
       )
+      console.log(this.generateActions)
     }
   }
 

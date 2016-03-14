@@ -7,12 +7,11 @@ class Api::V1::CommentsController < Api::V1::ApiController
 
     if comment.save
       track_activity(comment)
-      flash[:notice] = "Comment saved successfully."
+      render json: comment, current_user: current_user
     else
-      flash[:error] = "Comment failed to save."
+      render json: comment.errors
     end
 
-    redirect_to :back
   end
 
   def destroy

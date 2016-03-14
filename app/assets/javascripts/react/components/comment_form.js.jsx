@@ -8,12 +8,11 @@ class CommentForm extends React.Component {
   handleComment() {
     body = $("#comment_body_" + this.props.post.id).val();
     data = {"comment": {"body": body}, "post_id": this.props.post.id};
-    PostActions.submitPost(data);
+    PostActions.submitComment(data);
     $("#comment_body_" + this.props.post.id).val('');
   }
 
   render() {
-
     return (
         <form className="new_comment" id={"new_comment_" + this.props.post.id} action={"/api/v1/posts/" + this.props.post.id + "/comments"} acceptCharset="UTF-8" method="post">
           <input name="utf8" type="hidden" value="&#x2713;" />
@@ -27,7 +26,7 @@ class CommentForm extends React.Component {
                   </span>
                   <textarea rows="1" className="form-control" placeholder="Your Comment" name="comment[body]" id={"comment_body_" + this.props.post.id}></textarea>
                   <span className="input-group-addon">
-                    <button type="button" onClick={this.handleComment} className="btn btn-sm btn-primary pull-right" >Ok</button>
+                    <button type="button" onClick={this.handleComment.bind(this)} className="btn btn-sm btn-primary pull-right" >Ok</button>
                   </span>
                 </div>
               </div>
