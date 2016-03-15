@@ -1,32 +1,32 @@
 (() => {
   class PostStore {
     constructor() {
-      this.bindActions(PostActions)
+      // this.bindActions(PostActions)
       this.posts = [];
+      this.bindListeners({
+        handleInitData: PostActions.INIT_DATA,
+        handleUpdatePosts: PostActions.UPDATE_POSTS,
+        handleFetchPosts: PostActions.FETCH_POSTS
+      })
     }
 
-    onInitData(props) {
+    handleInitData(props) {
       // The user needs to be constantly updated (for activity feed)
       this.user = props.user;
       this.current_user = props.current_user;
       this.page = props.page;
-      this.fetchPosts();
+      this.comment_authenticity_token = props.comment_authenticity_token;
+      this.posts = PostActions.fetchPosts(this.user.id, this.page);
     }
 
-    fetchPosts() {
-      console.log("*******")
-      console.log(this.user);
-      console.log("*******")
-      $.getJSON(
-        "/api/v1/posts",
-        {
-          user_id: this.user.id,
-          page: this.page
-        },
-        (data) => {
-          this.setState({posts: data.posts})
-        });
+    handleUpdatePosts(posts) {
+      this.posts = posts
     }
+
+    handleFetchPosts() {
+      this.posts = [];
+    }
+
 
     onSubmitPost(data) {
       $.ajax({

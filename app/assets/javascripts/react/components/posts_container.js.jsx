@@ -18,7 +18,7 @@ class PostsContainer extends React.Component {
 
   componentWillMount() {
     PostStore.listen(this.onChange)
-    PostActions.initData(this.props)
+    PostActions.handleInitData(this.props)
   }
 
   componentWillUnmount() {
