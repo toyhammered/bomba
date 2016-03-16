@@ -1,25 +1,23 @@
-(() => {
-  class PostActions {
-    // constructor() {
-    //   this.generateActions(
-    //     'initData'
-    //     'submitPost',
-    //     'submitComment',
-    //     'handleFetchPosts',
-    //     'handleUpdatePosts'
-    //   )
-    // }
+class PostActions {
+  getPosts(user, page) {
+    return {
+      user: user,
+      page: page
+    };
+  }
 
-    fetchPosts(user, page) {
-      return (dispatch) => {
-        PostSource.fetchPosts(user, page)
-          .then((response) => {
-            this.handleUpdatePosts(response.posts);
-          })
-      }
-    }
+  updatePosts() {
 
-  } // end of class PostActions
+  }
 
-  this.PostActions = alt.createActions(PostActions);
-})();
+  submitPost() {
+
+  }
+
+  submitComment() {
+
+  }
+
+}
+
+this.PostActions = alt.createActions(PostActions);

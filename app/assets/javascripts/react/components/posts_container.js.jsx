@@ -3,22 +3,19 @@ class PostsContainer extends React.Component {
   propTypes: {
     user: React.PropTypes.object,
     current_user: React.PropTypes.object,
-    comment_authenticity_token: React.PropTypes.string,
+    form_token: React.PropTypes.string,
     page: React.PropTypes.string,
   }
 
   constructor(props) {
     super(props);
-
     // Bind callback methods to make `this` the correct context.
     this.onChange = this.onChange.bind(this);
-    // this.fetchPosts();
-    // setInterval(this.fetchPosts, 10000);
   }
 
   componentWillMount() {
     PostStore.listen(this.onChange)
-    PostActions.handleInitData(this.props)
+    PostActions.getPosts(this.props.user.id, this.props.page)
   }
 
   componentWillUnmount() {
@@ -26,17 +23,17 @@ class PostsContainer extends React.Component {
   }
 
   onChange(state) {
+    console.log("onChange called!", state);
     this.setState(state);
   }
 
   render() {
-    console.log("*****post state*****");
-    console.log(this.state);
+    console.log("*****post state*****", this.state);
     return (
       <Posts
         posts={this.state.posts}
-        current_user={this.state.current_user}
-        comment_authenticity_token={this.props.comment_authenticity_token}
+        current_user={this.props.current_user}
+        comment_authenticity_token={this.props.form_token}
       />
     );
 

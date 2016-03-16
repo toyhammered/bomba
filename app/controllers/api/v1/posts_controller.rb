@@ -5,8 +5,12 @@ class Api::V1::PostsController < Api::V1::ApiController
     page = params[:page].present? ? params[:page] : 1
     # posts = Post.where(user_id: params[:user_id]).page(page).per(3)
     posts = Post.where(user_id: params[:user_id])
+    puts "*" * 10
+    # puts current_user
+    pp posts
+    puts "*" * 10
 
-    render json: posts, current_user: current_user
+    render json: posts #, current_user: current_user
   end
 
   def show

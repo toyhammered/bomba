@@ -1,11 +1,11 @@
-var Posts = React.createClass({
+class Posts extends React.Component {
   propTypes: {
     posts: React.PropTypes.array,
     current_user: React.PropTypes.object,
     comment_authenticity_token: React.PropTypes.string
-  },
+  }
 
-  render: function() {
+  render() {
     var current_user = this.props.current_user;
     var comment_authenticity_token = this.props.comment_authenticity_token;
 
@@ -19,4 +19,4 @@ var Posts = React.createClass({
         <div>{this.props.posts.map(createPost)}</div>
     );
   }
-});
+}

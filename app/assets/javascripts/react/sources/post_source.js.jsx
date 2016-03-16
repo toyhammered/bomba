@@ -4,31 +4,13 @@ var PostSource = {
     console.log("******");
     console.log(user, page);
 
-    // return $.getJSON(
-    //   "/api/v1/posts",
-    //   {
-    //     user_id: user,
-    //     page: page
-    //   },
-    //   (data) => {
-    //     return data
-    //   }
-    // )
-    var headers = {
-      method: "POST",
-      mode: 'cors',
-      cache: 'default'
-    };
-
-    fetch("/api/v1/posts?user_id=" + user + "&page=" + page, headers)
-    .then(function(response){
-      return new Promise(function (resolve, reject) {
-        setTimeout(function() {
-          console.log("Fetched Data");
-          console.log(response);
-          resolve(response);
-        }, 250);
-      });
+    fetch(`/api/v1/posts.json?user_id=${user}&page=${page}`).then(
+      (response) => {
+        console.log(response);
+    }).catch(
+      (errorMessage) => {
+        console.log("Returned Promise?");
+        console.log(errorMessage);
     });
   } // end of fetch function
 

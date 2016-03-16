@@ -4,6 +4,6 @@ class Api::V1::PostSerializer < ActiveModel::Serializer
   has_many :comments
 
   def voted_for
-    object.voted_for(serialization_options[:current_user])
+    # object.voted_for(serialization_options[:current_user])
   end
 end

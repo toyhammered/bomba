@@ -25,8 +25,8 @@ class Post < ActiveRecord::Base
     (up_votes - down_votes)
   end
 
-  def voted_for(current_user)
-    self.votes.find_by(voter: current_user.id)
-  end
+  # def voted_for(current_user)
+  #   self.votes.find_by(voter: current_user.id)
+  # end
 
 end
