@@ -10,8 +10,8 @@ class PostActions {
 
   }
 
-  submitPost() {
-
+  submitPost(data) {
+    return data
   }
 
   submitComment() {

@@ -25,7 +25,7 @@ class Api::V1::PostsController < Api::V1::ApiController
 
     if post.save
       track_activity(post)
-      render json: post, current_user: current_user
+      render json: post # current_user: current_user
     else
       render json: post.errors
     end

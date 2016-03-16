@@ -41,7 +41,7 @@ class PostStore {
       data: data,
     })
     .done((response) => {
-      this.posts.unshift(response.post);
+      this.state.posts.unshift(response.post);
       this.emitChange();
     })
     .error((response) => {
