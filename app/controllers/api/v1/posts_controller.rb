@@ -20,6 +20,8 @@ class Api::V1::PostsController < Api::V1::ApiController
   end
 
   def create
+    puts "*" * 10
+    puts params
     post = Post.new(post_params)
     post.user_id = current_user.id
 

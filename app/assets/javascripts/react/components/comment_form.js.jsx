@@ -7,7 +7,7 @@ class CommentForm extends React.Component {
 
   handleComment() {
     body = $("#comment_body_" + this.props.post.id).val();
-    data = {"comment": {"body": body}, "post_id": this.props.post.id};
+    data = {"comment": {"body": body}, "post_id": this.props.post.id, "current_user_id": this.props.current_user.id};
     PostActions.submitComment(data);
     $("#comment_body_" + this.props.post.id).val('');
   }

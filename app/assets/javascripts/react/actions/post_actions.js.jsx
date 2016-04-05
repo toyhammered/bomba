@@ -6,16 +6,12 @@ class PostActions {
     };
   }
 
-  updatePosts() {
-
-  }
-
   submitPost(data) {
     return data
   }
 
-  submitComment() {
-
+  submitComment(data) {
+    return data
   }
 
 }

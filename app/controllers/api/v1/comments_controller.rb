@@ -2,6 +2,7 @@ class Api::V1::CommentsController < Api::V1::ApiController
 
   def create
     post = Post.find(params[:post_id])
+    current_user = User.find(params[:current_user_id])
     comment = post.comments.new(comment_params)
     comment.user_id = current_user.id
 
