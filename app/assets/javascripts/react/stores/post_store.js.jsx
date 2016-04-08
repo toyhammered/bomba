@@ -68,7 +68,6 @@ class PostStore {
   onDeletePost(data) {
     const post_id = data.post.id;
     const url = `/api/v1/posts/${post_id}`;
-
     fetch(url, {
       headers: {
         'Accept': 'application/json',
