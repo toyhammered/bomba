@@ -4,7 +4,7 @@ class PostsContainer extends React.Component {
     user: React.PropTypes.object,
     current_user: React.PropTypes.object,
     form_token: React.PropTypes.string,
-    page: React.PropTypes.string,
+    page: React.PropTypes.string
   }
 
   constructor(props) {

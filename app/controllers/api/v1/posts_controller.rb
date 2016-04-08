@@ -1,15 +1,10 @@
 class Api::V1::PostsController < Api::V1::ApiController
-  # before_action :authenticated?
 
   def index
     page = params[:page].present? ? params[:page] : 1
     # posts = Post.where(user_id: params[:user_id]).page(page).per(3)
     posts = Post.where(user_id: params[:user_id])
-    puts "*" * 10
     # puts current_user
-    pp posts
-    puts "*" * 10
-
     render json: posts #, current_user: current_user
   end
 
@@ -20,9 +15,8 @@ class Api::V1::PostsController < Api::V1::ApiController
   end
 
   def create
-    puts "*" * 10
-    puts params
     post = Post.new(post_params)
+    current_user = User.find(params[:current_user])
     post.user_id = current_user.id
 
     if post.save
@@ -49,14 +43,13 @@ class Api::V1::PostsController < Api::V1::ApiController
 
   def destroy
     post = Post.find(params[:id])
-    authorize post
+    # authorize post
 
     if post.destroy
-      flash[:notice] = "Post was successfully deleted."
+      render json: post
     else
-      flash[:error] = "There was an error deleting the post"
+      render json: post.errors
     end
-    redirect_to "/users/" + current_user.username
   end
 
   def upvote

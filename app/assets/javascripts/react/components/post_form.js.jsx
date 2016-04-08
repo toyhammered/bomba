@@ -6,7 +6,7 @@ class PostForm extends React.Component {
 
   handlePost() {
     body = $("#post_body").val();
-    data = {"post": {"body": body}};
+    data = {"post": {"body": body}, "current_user": this.props.user.id};
     PostActions.submitPost(data);
     $("#post_body").val('');
   }
@@ -26,7 +26,7 @@ class PostForm extends React.Component {
               </div>
             </div>
             <div className="panel-footer panel-footer-inverse panel-footer-form">
-              <input type="button" onClick={this.handlePost} className="btn btn-primary" value="Post" />
+              <input type="button" onClick={this.handlePost.bind(this)} className="btn btn-primary" value="Post" />
             </div>
           </div>
         </div>

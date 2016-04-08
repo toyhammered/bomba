@@ -1,12 +1,12 @@
-var Post = React.createClass({
+class Post extends React.Component {
   propTypes: {
     key: React.PropTypes.number,
     post: React.PropTypes.object,
     current_user: React.PropTypes.object,
     comment_authenticity_token: React.PropTypes.string
-  },
+  }
 
-  handleVote: function(vote_type) {
+  handleVote(vote_type) {
     $.ajax({
       type: "POST",
       url: "/api/v1/posts/" + this.props.post.id + "/" + vote_type,
@@ -15,9 +15,14 @@ var Post = React.createClass({
     }).done(function(){
       console.log("Completed updating vote on post");
     });
-  },
+  }
 
-  render: function() {
+  deletePost() {
+    data = {"post": {"id": this.props.post.id}};
+    PostActions.deletePost(data);
+  }
+
+  render() {
     return (
       <div className="row">
         <div className="col-md-offset-1">
@@ -31,8 +36,8 @@ var Post = React.createClass({
               <div className="dropdown pull-right">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-2x fa-cog"></i></a>
                 <ul className="dropdown-menu">
-                  {/* }<li> link_to "Edit Post", "#", "data-target": "#myModal_#{post.id}", "data-toggle": "modal" </li> */}
-                  <li><a className="navbar-link" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href={"/api/v1/posts/" + this.props.post.id}>Delete Post</a></li>
+                  {/* <li> link_to "Edit Post", "#", "data-target": "#myModal_#{post.id}", "data-toggle": "modal" </li> */}
+                  <li><a className="navbar-link" onClick={this.deletePost.bind(this)}>Delete Post</a></li>
                 </ul>
               </div>
             </div>
@@ -78,4 +83,4 @@ var Post = React.createClass({
       </div>
     );
   }
-});
+};

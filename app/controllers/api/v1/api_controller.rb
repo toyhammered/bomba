@@ -12,13 +12,4 @@ class Api::V1::ApiController < ActionController::Base
     logger.debug("Trackable: #{trackable.inspect}, Action: #{action}")
   end # end track_activity
 
-  # def authenticated?
-  #   authenticate_or_request_with_http_basic do |username, password|
-  #     resource = User.find_by(username: username)
-  #     if resource.valid_password?(password)
-  #       sign_in :user, resource
-  #     end
-  #   end
-  # end
-
 end

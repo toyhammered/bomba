@@ -3,14 +3,11 @@ class PostStore {
     this.bindListeners({
       onSubmitPost:         PostActions.submitPost,
       onSubmitComment:      PostActions.submitComment,
-      onGetPosts:           PostActions.getPosts
+      onGetPosts:           PostActions.getPosts,
+      onDeletePost:         PostActions.deletePost
     });
     this.state = {
       posts:          []
-      // user:           false,
-      // current_user:   false,
-      // page:           false,
-      // form_token:     false
     }
 
   }
@@ -28,39 +25,22 @@ class PostStore {
   }
 
   onSubmitPost(data) {
-  //   console.log(JSON.stringify(data));
-  //   fetch("/api/v1/posts.json",{
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json'
-  //     },
-  //     body: data
-  //   }).then(
-  //     (response) => {
-  //       return response.json();
-  //   }).then(
-  //     (data) => {
-  //       this.state.posts.unshift(data.post);
-  //       this.emitChange();
-  //   }).catch(
-  //     (errorMessage) => {
-  //       console.log("Submitting Post Failed.", `error: ${errorMessage}`);
-  //   });
-  // }
-
-    $.ajax({
-      type: "POST",
-      url: "/api/v1/posts",
-      data: data,
-    })
-    .done((response) => {
-      let postsCopy = this.state.posts
-      postsCopy.unshift(response.post)
-      this.setState({posts: postsCopy})
-    })
-    .error((response) => {
-      console.log('post error');
-      console.log(response);
+    const url = '/api/v1/posts';
+    fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      let postStateCopy = this.state.posts;
+      postStateCopy.unshift(data.post);
+      this.setState({posts: postStateCopy});
+    }).catch((errorMessage) => {
+      console.log('Something went wrong!', `error: ${errorMessage}`);
     });
   }
 
@@ -77,25 +57,37 @@ class PostStore {
     }).then((response) => {
       return response.json();
     }).then((data) => {
-      postStateCopy = this.state.posts;
+      let postStateCopy = this.state.posts;
       postStateCopy.find(post => post.id == post_id).comments.unshift(data.comment);
       this.setState({posts: postStateCopy});
     }).catch((errorMessage) => {
-      console.log("Something went wrong!", `error: ${errorMessage}`);
+      console.log('Something went wrong!', `error: ${errorMessage}`);
     });
+  }
 
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: `/api/v1/posts/${data.post_id}/comments`,
-  //     data: data,
-  //   }).done((response) => {
+  onDeletePost(data) {
+    const post_id = data.post.id;
+    const url = `/api/v1/posts/${post_id}`;
 
-  //   }).error((response) => {
-  //     console.log('post error');
-  //     console.log(response);
-  //   });
+    fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'DELETE',
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      let postStateCopy = this.state.posts;
+      postIndex = postStateCopy.findIndex(post => post.id == post_id);
+      postStateCopy.splice(postIndex, 1);
+      this.setState({posts: postStateCopy});
+    }).catch((errorMessage) => {
+      console.log('Something went wrong!', `error: ${errorMessage}`);
+    });
   }
 
 }
 
-  this.PostStore = alt.createStore(PostStore, 'PostStore');
+this.PostStore = alt.createStore(PostStore, 'PostStore');

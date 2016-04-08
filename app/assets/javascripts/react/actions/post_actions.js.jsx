@@ -14,6 +14,10 @@ class PostActions {
     return data
   }
 
+  deletePost(data) {
+    return data
+  }
+
 }
 
 this.PostActions = alt.createActions(PostActions);
