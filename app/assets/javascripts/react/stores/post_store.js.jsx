@@ -1,10 +1,12 @@
 class PostStore {
   constructor() {
     this.bindListeners({
-      onSubmitPost:         PostActions.submitPost,
-      onSubmitComment:      PostActions.submitComment,
       onGetPosts:           PostActions.getPosts,
-      onDeletePost:         PostActions.deletePost
+      onNewPost:            PostActions.newPost,
+      onNewComment:         PostActions.newComment,
+      onDeletePost:         PostActions.deletePost,
+      onNewVote:            PostActions.newVote,
+      onGetActivityPosts:   PostActions.getActivityPosts
     });
     this.state = {
       posts:          []
@@ -24,7 +26,7 @@ class PostStore {
     });
   }
 
-  onSubmitPost(data) {
+  onNewPost(data) {
     const url = '/api/v1/posts';
     fetch(url, {
       headers: {
@@ -44,7 +46,7 @@ class PostStore {
     });
   }
 
-  onSubmitComment(data) {
+  onNewComment(data) {
     const post_id = data.post_id
     const url = `/api/v1/posts/${post_id}/comments`;
     fetch(url, {
@@ -85,6 +87,48 @@ class PostStore {
     }).catch((errorMessage) => {
       console.log('Something went wrong!', `error: ${errorMessage}`);
     });
+  }
+
+  onNewVote(data) {
+    const post_id = data.post_id
+    const url = `/api/v1/posts/${post_id}/${data.vote_type}`;
+    fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      let postStateCopy = this.state.posts;
+      let postIndex = postStateCopy.findIndex(post => post.id == post_id);
+      let voteIndex = postStateCopy[postIndex].votes.findIndex(vote => vote.id == data.id);
+      // need to make it update the total_votes, up_votes, down_votes
+      if (voteIndex == 0) {
+        console.log("Existed");
+        postStateCopy[postIndex].votes.splice(voteIndex, 1);
+      }
+      postStateCopy[postIndex].votes.unshift(data);
+      this.setState({posts: postStateCopy});
+    }).catch((errorMessage) => {
+      console.log('Something went wrong!', `error: ${errorMessage}`);
+    });
+  }
+
+  onGetActivityPosts(params) {
+
+    const url = `/api/v1/activities?all_users=${params}`;
+    fetch(url).then((response) => {
+      return response.json();
+    }).then((data) => {
+      console.log(data);
+      this.setState({posts: data.activities});
+    }).catch((errorMessage) => {
+      console.log("Something went wrong!", `error: ${errorMessage}`);
+    });
+
   }
 
 }

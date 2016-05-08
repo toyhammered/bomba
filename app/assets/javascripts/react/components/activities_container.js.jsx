@@ -1,10 +1,9 @@
-class PostsContainer extends React.Component {
+class ActivitiesContainer extends React.Component {
 
   propTypes: {
-    user: React.PropTypes.object,
+    friends: React.PropTypes.array,
     current_user: React.PropTypes.object,
-    form_token: React.PropTypes.string,
-    page: React.PropTypes.string
+    form_token: React.PropTypes.string
   }
 
   constructor(props) {
@@ -14,12 +13,12 @@ class PostsContainer extends React.Component {
   }
 
   componentWillMount() {
-    PostStore.listen(this.onChange)
-    var user = this.props.user.id
-    var page = this.props.page
-    PostActions.getPosts(user,page)
+    PostStore.listen(this.onChange);
+    var friends = this.props.friends
+    var user = this.props.current_user
+    PostActions.getActivityPosts(friends, user);
+    var polling = setInterval(function() {PostActions.getActivityPosts(friends, user);}, 10000);
 
-    var polling = setInterval(function() {PostActions.getPosts(user,page);}, 10000);
   }
 
   componentWillUnmount() {
@@ -30,12 +29,10 @@ class PostsContainer extends React.Component {
   }
 
   onChange(state) {
-    console.log("onChange called!", state);
     this.setState(state);
   }
 
   render() {
-    console.log("*****post state*****", this.state);
     return (
       <Posts
         posts={this.state.posts}

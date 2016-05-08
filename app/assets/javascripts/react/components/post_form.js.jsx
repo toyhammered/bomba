@@ -7,7 +7,7 @@ class PostForm extends React.Component {
   handlePost() {
     body = $("#post_body").val();
     data = {"post": {"body": body}, "current_user": this.props.user.id};
-    PostActions.submitPost(data);
+    PostActions.newPost(data);
     $("#post_body").val('');
   }
 

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :users, only: [:index]
+      resources :activities, only: [:index]
       resources :posts do
         member do
           put "like", to: "posts#upvote"

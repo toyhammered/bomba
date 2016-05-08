@@ -8,11 +8,11 @@ class Api::V1::PostsController < Api::V1::ApiController
     render json: posts #, current_user: current_user
   end
 
-  def show
-    # this is wrong (well kinda)
-    posts = Post.where(id: params[:id])
-    render json: posts, current_user: current_user
-  end
+  # def show
+  #   # this is wrong (well kinda)
+  #   posts = Post.where(id: params[:id])
+  #   render json: posts, current_user: current_user
+  # end
 
   def create
     post = Post.new(post_params)
@@ -20,7 +20,7 @@ class Api::V1::PostsController < Api::V1::ApiController
     post.user_id = current_user.id
 
     if post.save
-      track_activity(post)
+      track_activity(current_user, post)
       render json: post # current_user: current_user
     else
       render json: post.errors
@@ -53,19 +53,24 @@ class Api::V1::PostsController < Api::V1::ApiController
   end
 
   def upvote
-    post = Post.find(params[:id])
+    post = Post.find(params[:post_id])
+    current_user = User.find(params[:current_user_id])
+
     post.liked_by current_user
     vote = ActsAsVotable::Vote.find_by(votable_id: post.id, votable_type: "Post")
-    track_activity(vote)
-    redirect_to :back
+    track_activity(current_user, vote)
+    render json: vote
   end
 
   def downvote
-    post = Post.find(params[:id])
+    post = Post.find(params[:post_id])
+    current_user = User.find(params[:current_user_id])
+
     post.disliked_by current_user
     vote = ActsAsVotable::Vote.find_by(votable_id: post.id, votable_type: "Post")
-    track_activity(vote)
-    redirect_to :back
+
+    track_activity(current_user, vote)
+    render json: vote
   end
 
   private

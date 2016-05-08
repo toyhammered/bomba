@@ -21,7 +21,7 @@ class PendingFriendshipsController < ApplicationController
     @pending_friendship = PendingFriendship.find(params[:id])
     @pending_friendship.accept_friendship
     @friendship = Friendship.find_by(user_id: @pending_friendship.user_id, friend_id: @pending_friendship.friend_id)
-    track_activity(@friendship)
+    track_activity(current_user, @friendship)
 
     respond_to do |format|
       format.html { redirect_to :back, notice: "Friendship Accepted" }

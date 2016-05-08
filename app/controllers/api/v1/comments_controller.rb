@@ -7,7 +7,7 @@ class Api::V1::CommentsController < Api::V1::ApiController
     comment.user_id = current_user.id
 
     if comment.save
-      track_activity(comment)
+      track_activity(current_user, comment)
       render json: comment, current_user: current_user
     else
       render json: comment.errors

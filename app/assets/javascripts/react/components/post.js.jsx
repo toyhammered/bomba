@@ -6,15 +6,9 @@ class Post extends React.Component {
     comment_authenticity_token: React.PropTypes.string
   }
 
-  handleVote(vote_type) {
-    $.ajax({
-      type: "POST",
-      url: "/api/v1/posts/" + this.props.post.id + "/" + vote_type,
-      headers: {"X-HTTP-Method-Override": "PUT"},
-      data: {"id": this.props.post.id},
-    }).done(function(){
-      console.log("Completed updating vote on post");
-    });
+  newVote(vote_type) {
+    data = {"post_id": this.props.post.id, "current_user_id": this.props.current_user.id, "vote_type": vote_type};
+    PostActions.newVote(data);
   }
 
   deletePost() {
@@ -31,7 +25,7 @@ class Post extends React.Component {
 
             <div className="panel-heading panel-heading-inverse">
               <a href={"/users/" + this.props.post.user.username} >{this.props.post.user.username} </a>
-              <a href={"/posts/" + this.props.post.id} >posted this {moment(this.props.post.created_at).fromNow()} </a>
+              <a href={"#" /*+ this.props.post.id*/} >posted this {moment(this.props.post.created_at).fromNow()} </a>
 
               <div className="dropdown pull-right">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-2x fa-cog"></i></a>
@@ -50,9 +44,9 @@ class Post extends React.Component {
           </div>
 
           <div className="panel-footer panel-footer-inverse panel-footer-post">
-            <a onClick={this.handleVote.bind(this, "like")}><i className="fa fa-2x fa-heart"></i></a>
+            <a onClick={this.newVote.bind(this, "like")}><i className="fa fa-2x fa-heart"></i></a>
             {this.props.post.total_votes}
-            <a onClick={this.handleVote.bind(this, "dislike")}><i className="fa fa-2x fa-bomb"></i></a>
+            <a onClick={this.newVote.bind(this, "dislike")}><i className="fa fa-2x fa-bomb"></i></a>
           </div>
 
           <div className="panel-group panel-group-comments">

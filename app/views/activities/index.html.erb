@@ -8,19 +8,13 @@
         }) %>
 
 
-      <% @active_friends.each do |friend| %>
-        <%= react_component("PostsContainer",
+        <%= react_component("ActivitiesContainer",
             {
-              post_path: api_v1_posts_path,
-              user: friend,
+              friends: @active_friends.map {|user| user.id},
               current_user: current_user,
-              page: @page,
               comment_authenticity_token: form_authenticity_token
             }) %>
-      <% end %>
     </div>
-
-
 
 
     <div class="col-md-3" id="activity">
@@ -31,7 +25,7 @@
           <div class="panel-body">
             <div class="col-md-12">
               <div class="row">
-                <%#= render partial: 'activities/activity', collection: @activities %>
+                <%= render partial: 'activities/activity', collection: @activities %>
               </div>
             </div>
           </div>

@@ -6,11 +6,11 @@ class PostActions {
     };
   }
 
-  submitPost(data) {
+  newPost(data) {
     return data
   }
 
-  submitComment(data) {
+  newComment(data) {
     return data
   }
 
@@ -18,6 +18,13 @@ class PostActions {
     return data
   }
 
+  newVote(data) {
+    return data
+  }
+
+  getActivityPosts(data) {
+    return data
+  }
 }
 
 this.PostActions = alt.createActions(PostActions);

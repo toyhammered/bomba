@@ -2,8 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @post = Post.find(params[:id])
-    @user = User.find(@post.user_id)
+    @post = []
+    post = Post.find(params[:id])
+    @post.push(post)
+    @user = User.find(post.user_id)
   end
 
 end

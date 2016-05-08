@@ -4,7 +4,7 @@ class Api::V1::ApiController < ActionController::Base
 
   private
 
-  def track_activity(trackable, action = params[:action])
+  def track_activity(current_user, trackable, action = params[:action])
     Activity.track(current_user, trackable, action)
   rescue
     logger.debug("*****DEBUG*****")
