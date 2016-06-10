@@ -46,7 +46,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'turbolinks'
 gem 'twitter-typeahead-rails'
 gem 'uglifier', '>= 1.3.0'
-
+gem 'fetch-rails'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 

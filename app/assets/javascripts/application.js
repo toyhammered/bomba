@@ -17,6 +17,6 @@
 //= require momentjs
 //= require react
 //= require react_ujs
-
+//= require fetch
 //= require bootstrap-sprockets
 //= require_tree .
